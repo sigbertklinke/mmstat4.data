@@ -367,9 +367,8 @@ The data set `pechstein_isu` contains the measurements used by the International
 
 | Variable      | Content and coding                 | 
 |:--------------|:-----------------------------------|
-| Datum         | Day of measurement                 | 
-| Tag           | Days since first measurement       | 
-| Retikulozyten | Reticulocyte value                 | 
+| TAG2000       | Days since 1st Jan 2000            | 
+| RETIKULOZYTEN | Reticulocyte value                 | 
 
 ```{r}
 library("mmstat4")
