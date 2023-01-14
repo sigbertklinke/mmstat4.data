@@ -1,7 +1,7 @@
 ---
 title: "Data"
 author: "Sigbert Klinke"
-date: "2023-01-12"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: html_document
 ---
 
@@ -73,8 +73,7 @@ ALLBUS 2018 data set (Allgemeine Bevölkerungsumfrage der Sozialwissenschaften).
 
 ```{r}
 library("mmstat4")
-ghget("hu.data")
-allbus <- ghload("data/allbus2018.rda")
+allbus <- ghload("data/allbus2018.rds")
 str(allbus)
 ```
 
@@ -155,9 +154,13 @@ df$Cereal <- factor(df$Cereal, labels=c("Canary Crunch", "Ghostly Shadows",  "Tu
 df$Like   <- factor(df$Like,   labels=c("crazy", "don't know", "like", "not part"))
 df$Gift   <- factor(df$Gift,   labels=c("can't decide", "ring", "squirt gun", "whistle"))
 df$Gender <- factor(df$Gender,  labels=c("F", "M"))
-library("kableExtra")
-as_image(kable_styling(kable(df), full_width = FALSE))
+library("gridExtra")
+png("cereal.png", height = 50*nrow(df), width = 200*ncol(df))
+grid.table(df)
+dev.off()
 ```
+
+![](cereal.png)
 
 ## Concrete data
 
