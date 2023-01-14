@@ -286,6 +286,8 @@ The General Social Survey data set is the US equivalent to ALLBUS.
 | rincmdol | Respondent's Income (in US$)             |
 | wifeduc  | Wife: number of years of education       |
 | husbeduc | Husband: number of years of education    |
+| husbhr   | hrs worked last week by husband          |
+| wifehr   | hrs worked last week by wife             |
 | wifeft   | Wife employed full time (0=No, 1=Yes)    |
 | happy    | General happiness (1=Very Happy, 2=Pretty happy, 3=Not too happy, NA=NAP/DK/NA)|
 | hapmar   | Happiness of marriage (coding as in happy)|
@@ -314,6 +316,8 @@ vars <- c(
 "rincmdol",
 "wifeduc",
 "husbeduc",
+"husbhr",
+"wifehr",
 "wifeft",
 "happy",
 "hapmar")
@@ -367,8 +371,9 @@ The data set `pechstein_isu` contains the measurements used by the International
 
 | Variable      | Content and coding                 | 
 |:--------------|:-----------------------------------|
-| TAG2000       | Days since 1st Jan 2000            | 
-| RETIKULOZYTEN | Reticulocyte value                 | 
+| Datum         | Date                               |
+| Tag           | Days since 1st Jan 2000            | 
+| Retikulozyten | Reticulocyte value                 | 
 
 ```{r}
 library("mmstat4")
@@ -377,7 +382,7 @@ str(pechstein, give.attr=FALSE)
 ```
 
 ```{r, include=FALSE}
-saveRDS(import("pechstein.sav",  sep="\t", dec=","), file = "pechstein.rds", version=2)
+saveRDS(import("pechstein.csv",  sep="\t", dec=","), file = "pechstein.rds", version=2)
 ```
 
 ### `pechstein_isu`
