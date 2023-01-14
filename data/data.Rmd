@@ -64,10 +64,10 @@ ALLBUS 2018 data set (Allgemeine Bevölkerungsumfrage der Sozialwissenschaften).
 | `r allbus_data$veukom`                | VERTRAUEN: KOMMISSION DER EU             |
 | `r allbus_data$veupar`                | VERTRAUEN: EUROPAEISCHES PARLAMENT       |
 
-```{r}
-suppressPackageStartupMessages(library("mmstat4"))
+```{r, message=FALSE}
+library("mmstat4")
 allbus <- ghload("data/allbus2018.rds")
-str(allbus)
+str(allbus, give.attr=FALSE)
 ```
 
 ```{r, echo=FALSE}
@@ -113,7 +113,7 @@ The `sas body` data set consists of data about children taken from the SAS onlin
 ```{r}
 library("mmstat4")
 body <- ghload("data/body.rds")
-str(body)
+str(body, give.attr=FALSE)
 ```
 
 ```{r, echo=FALSE}
@@ -188,7 +188,7 @@ Data about concrete mixtures and resulting properties (Slump, Flow and Strength)
 ```{r}
 library("mmstat4")
 concrete <- ghload("data/concrete.rds")
-str(concrete)
+str(concrete, give.attr=FALSE)
 ```
 
 ```{r, include=FALSE}
@@ -213,7 +213,7 @@ The `country` are data about the most countries in the world in 1992.
 ```{r}
 library("mmstat4")
 country <- ghload("data/country.rds")
-str(country)
+str(country, give.attr=FALSE)
 ```
 
 ```{r, include=FALSE}
@@ -242,7 +242,7 @@ The `cps`data are an excerpt of the current population survey of the US.
 ```{r}
 library("mmstat4")
 cps <- ghload("data/cps.rds")
-str(cps)
+str(cps, give.attr=FALSE)
 ```
 
 ```{r, include=FALSE}
@@ -262,7 +262,7 @@ The data are created by Matejka, J., \& Fitzmaurice, G. (2017).
 
 ```{r}
 library("datasauRus")
-str(datasaurus_dozen)
+str(datasaurus_dozen, give.attr=FALSE)
 ```
 
 ## General Social Survey data
@@ -293,7 +293,7 @@ The General Social Survey data set is the US equivalent to ALLBUS.
 ```{r}
 library("mmstat4")
 gss <- ghload("gss.rds")
-str(gss)
+str(gss, give.attr=FALSE)
 ```
 
 ```{r, include=FALSE}
@@ -349,7 +349,7 @@ The Olympic decathlon data set gives the performances of 33 men's decathlon at t
 ```{r}
 library("mmstat4")
 cps <- ghload("data/olympic.rds")
-str(cps)
+str(cps, give.attr=FALSE)
 ```
 
 ```{r, include=FALSE}
@@ -381,7 +381,7 @@ The data set contains information about 474 employees hired by the Harris Trust 
 ```{r}
 library("mmstat4")
 salary<- ghload("data/salary.rds")
-str(salary)
+str(salary, give.attr=FALSE)
 ```
 
 ```{r, include=FALSE}
@@ -406,7 +406,7 @@ The data are taken from the book of Flury, B. and Riedwyl, H. (1988). \textit{Mu
 ```{r}
 library("mmstat4")
 bank2 <- ghload("data/bank2.rds")
-str(bank2)
+str(bank2, give.attr=FALSE)
 ```
 
 ```{r, include=FALSE}
