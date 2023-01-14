@@ -1,7 +1,7 @@
-## ------------------------------------------------------------------------------------------------------------------------
+## -----------------------------------------------------------------------------------------------------
 ## a
-library("rio")
-gss <- import("https://shinyapps.wiwi.hu-berlin.de/d/GSS.SAV")
+library("mmstat4")
+gss <- ghload("data/gss.rds")
 lm1 <- lm(educ~speduc+paeduc+rincmdol+tvhours, data=gss, x=TRUE)
 summary(lm1)
 plot(lm1)

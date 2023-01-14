@@ -1,6 +1,7 @@
-## ------------------------------------------------------------------------------------------------------------------------
+## -----------------------------------------------------------------------------------------------------
 ## a
-allbus <- import("https://shinyapps.wiwi.hu-berlin.de/d/ALLBUS2018.sav")
+library("mmstat4")
+allbus <- ghload("data/allbus2018.rds")
 ptvar <- startsWith(names(allbus), "pt")
 trust <- allbus[names(allbus)[ptvar]]
 colnames(trust) <- c("Gesundheitswesen", "Bundesverfassungsgericht", "Bundestag", 

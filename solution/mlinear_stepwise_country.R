@@ -1,6 +1,6 @@
-## ------------------------------------------------------------------------------------------------------------------------
-library("rio")
-country <- import("https://shinyapps.wiwi.hu-berlin.de/d/COUNTRY.SAV")
+## -----------------------------------------------------------------------------------------------------
+library("mmstat4")
+country <- ghload("data/country.rds")
 ## a
 library("olsrr")
 library("MASS")

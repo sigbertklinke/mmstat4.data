@@ -1,6 +1,6 @@
-## ------------------------------------------------------------------------------------------------------------------------
-library("rio")
-olymp <- import("https://shinyapps.wiwi.hu-berlin.de/d/olympic.sav")
+## -----------------------------------------------------------------------------------------------------
+library("mmstat4")
+olymp <- ghload("data/olympic.rds")
 names(olymp)
 dec  <- olymp[,-c(1,12)]
 sdec <- scale(dec)

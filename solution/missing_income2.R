@@ -1,7 +1,7 @@
-## ------------------------------------------------------------------------------------------------------------------------
+## -----------------------------------------------------------------------------------------------------
 ### a
-library("rio")
-allbus <- import("https://shinyapps.wiwi.hu-berlin.de/d/ALLBUS2018.sav")
+library("mmstat4")
+allbus <- ghload("data/allbus2018.rds")
 # 1 = missing in di05, no missing in di06
 # 2 = no missing in di05, missing in di06
 # 3 = missing in di05, missing in di06

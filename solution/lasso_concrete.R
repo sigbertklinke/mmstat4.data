@@ -1,6 +1,6 @@
-## ------------------------------------------------------------------------------------------------------------------------
-library("rio")
-concrete <- import("https://shinyapps.wiwi.hu-berlin.de/d/concrete.sav")
+## -----------------------------------------------------------------------------------------------------
+library("mmstat4")
+concrete <- ghload("data/concrete.rds")
 ## a 
 library("MASS")
 lm1 <- lm(Strength~.-Slump-Flow, data=concrete, x=TRUE)

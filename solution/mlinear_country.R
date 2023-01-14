@@ -1,7 +1,7 @@
-## ------------------------------------------------------------------------------------------------------------------------
+## -----------------------------------------------------------------------------------------------------
 # a +b
-library("rio")
-country <- import("https://shinyapps.wiwi.hu-berlin.de/d/COUNTRY.SAV")
+library("mmstat4")
+country <- ghload("data/country.rds")
 lm1 <- lm(LIFEEXPM~URBAN+LNDOCS+LNBEDS+LNGDP+LNRADIO, data=country, x=TRUE)
 summary(lm1)
 ## c

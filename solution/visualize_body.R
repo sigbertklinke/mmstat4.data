@@ -1,8 +1,8 @@
-## ---- warning=FALSE------------------------------------------------------------------------------------------------------
+## ---- warning=FALSE-----------------------------------------------------------------------------------
 ## a
-library("rio")
 library("psych")
-body <- import("https://shinyapps.wiwi.hu-berlin.de/d/sas_body.sav")
+library("mmstat4")
+body <- ghload("data/body.rds")
 describe(body) # units?
 body$Age    <- body$Age/12           
 body$Height <- 2.54*body$Height     

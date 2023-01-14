@@ -1,7 +1,7 @@
-## ------------------------------------------------------------------------------------------------------------------------
+## -----------------------------------------------------------------------------------------------------
 ### a
-library("rio")
-allbus <- import("https://shinyapps.wiwi.hu-berlin.de/d/ALLBUS2018.sav")
+library("mmstat4")
+allbus <- ghload("data/allbus2018.rds")
 stem(allbus$di05)
 ### b
 boxplot(allbus$di05, horizontal = TRUE)

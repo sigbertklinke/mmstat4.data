@@ -1,7 +1,7 @@
-## ------------------------------------------------------------------------------------------------------------------------
+## -----------------------------------------------------------------------------------------------------
 ### a
-library("rio")
-gss <- import("https://shinyapps.wiwi.hu-berlin.de/d/GSS.SAV")
+library("mmstat4")
+gss <- ghload("data/gss.rds")
 degree <- names(attr(gss$degree, "labels"))[gss$degree+1]
 tapply(gss$rincmdol, degree, mean, na.rm=TRUE)
 ### b+c

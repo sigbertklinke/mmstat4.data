@@ -1,7 +1,7 @@
-## ------------------------------------------------------------------------------------------------------------------------
+## -----------------------------------------------------------------------------------------------------
 ## a
-library("rio")
-gss <- import("https://shinyapps.wiwi.hu-berlin.de/d/GSS.SAV")
+library("mmstat4")
+gss <- ghload("data/gss.rds")
 subset <- (gss$wrkstat==1)
 plot(gss$hrs1[subset], gss$educ[subset])
 ## b

@@ -1,7 +1,7 @@
-## ------------------------------------------------------------------------------------------------------------------------
+## -----------------------------------------------------------------------------------------------------
 err <- function (v) { sum(v)-max(v) }
-library("rio")
-gss <- import("https://shinyapps.wiwi.hu-berlin.de/d/GSS.SAV")
+library("mmstat4")
+gss <- ghload("data/gss.rds")
 #a
 tab    <- table(gss$hapmar, gss$happy, deparse.level=2)
 thappy <- margin.table(tab, 2) # happy dependent

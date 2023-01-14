@@ -1,7 +1,7 @@
-## ------------------------------------------------------------------------------------------------------------------------
+## -----------------------------------------------------------------------------------------------------
 ## a
-library("rio")
-allbus <- import("https://shinyapps.wiwi.hu-berlin.de/d/ALLBUS2018.sav")
+library("mmstat4")
+allbus <- ghload("data/allbus2018.rds")
 tab <- table(allbus$land, allbus$di06)
 tab
 chisq.test(tab)

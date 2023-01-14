@@ -1,5 +1,6 @@
-## ------------------------------------------------------------------------------------------------------------------------
-salary <- import("https://shinyapps.wiwi.hu-berlin.de/d/salary.sav")
+## -----------------------------------------------------------------------------------------------------
+library("mmstat4")
+salary   <- ghload("data/salary.rds")
 sex      <- names(attr(salary$sex, "labels"))[salary$sex+1]
 sexrace  <- names(attr(salary$sexrace, "labels"))[salary$sexrace]
 minority <- names(attr(salary$minority, "labels"))[salary$minority+1]

@@ -1,5 +1,6 @@
-## ------------------------------------------------------------------------------------------------------------------------
-gss   <- import("https://shinyapps.wiwi.hu-berlin.de/d/GSS.SAV")
+## -----------------------------------------------------------------------------------------------------
+library("mmstat4")
+gss <- ghload("data/gss.rds")
 deduc <- na.omit(gss$husbeduc - gss$wifeduc)
 plot(density(deduc, adjust=1.25), type="l")
 rug(deduc)

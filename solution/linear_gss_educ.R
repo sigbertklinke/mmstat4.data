@@ -1,7 +1,7 @@
-## ------------------------------------------------------------------------------------------------------------------------
+## -----------------------------------------------------------------------------------------------------
 ## a
-library("rio")
-gss <- import("https://shinyapps.wiwi.hu-berlin.de/d/GSS.SAV")
+library("mmstat4")
+gss <- ghload("data/gss.rds")
 cor(gss$husbeduc, gss$wifeduc)
 cor(gss$husbeduc, gss$wifeduc, use="complete.obs")
 ## b

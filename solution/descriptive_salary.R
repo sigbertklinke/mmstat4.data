@@ -1,6 +1,7 @@
-## ------------------------------------------------------------------------------------------------------------------------
+## -----------------------------------------------------------------------------------------------------
 ## a
-salary <- import("https://shinyapps.wiwi.hu-berlin.de/d/salary.sav")
+library("mmstat4")
+salary <- ghload("data/salary.rds")
 names(salary)
 hist(salary$salbeg)
 library("psych")

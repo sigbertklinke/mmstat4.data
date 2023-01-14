@@ -1,6 +1,6 @@
-## ------------------------------------------------------------------------------------------------------------------------
-library("rio")
-gss <- import("https://shinyapps.wiwi.hu-berlin.de/d/GSS.SAV")
+## -----------------------------------------------------------------------------------------------------
+library("mmstat4")
+gss <- ghload("data/gss.rds")
 names(gss)
 ### a+b
 educc <- complete.cases(cbind(gss$husbeduc, gss$wifeduc)) 

@@ -1,7 +1,7 @@
-## ------------------------------------------------------------------------------------------------------------------------
+## -----------------------------------------------------------------------------------------------------
 ### a+b
-library("rio")
-salary <- import("https://shinyapps.wiwi.hu-berlin.de/d/salary.sav")
+library("mmstat4")
+salary <- ghload("data/salary.rds")
 names(salary)
 #
 z <- scale(salary$salbeg)

@@ -1,6 +1,6 @@
-## ------------------------------------------------------------------------------------------------------------------------
-library("rio")
-allbus <- import("https://shinyapps.wiwi.hu-berlin.de/d/ALLBUS2018.sav")
+## -----------------------------------------------------------------------------------------------------
+library("mmstat4")
+allbus <- ghload("data/allbus2018.rds")
 tab <- table(allbus$ep03, allbus$ep06)
 tab
 plot(tab)
