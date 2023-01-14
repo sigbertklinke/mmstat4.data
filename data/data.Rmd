@@ -283,6 +283,7 @@ The General Social Survey data set is the US equivalent to ALLBUS.
 | tvhours  | Hours of Television Watched              |
 | wrkstat  | Labor Force Status (1=Working fulltime)  |
 | hrs1     | Number of Hours Worked Last Week         |
+| degree   | RS Highest Degree         |
 | incomdol | Household Income (in US$)                |
 | rincmdol | Respondent's Income (in US$)             |
 | wifeduc  | Wife: number of years of education       |
@@ -314,6 +315,7 @@ vars <- c(
 "tvhours",
 "wrkstat",
 "hrs1",
+"degree",
 "incomdol",
 "rincmdol",
 "wifeduc",
