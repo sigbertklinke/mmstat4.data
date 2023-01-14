@@ -64,12 +64,6 @@ ALLBUS 2018 data set (Allgemeine Bevölkerungsumfrage der Sozialwissenschaften).
 | `r allbus_data$veukom`                | VERTRAUEN: KOMMISSION DER EU             |
 | `r allbus_data$veupar`                | VERTRAUEN: EUROPAEISCHES PARLAMENT       |
 
-```{r, message=FALSE}
-library("mmstat4")
-allbus <- ghload("data/allbus2018.rds")
-str(allbus, give.attr=FALSE)
-```
-
 ```{r, echo=FALSE}
 library("rio")
 x <- import("ALLBUS2018.sav")
@@ -99,6 +93,12 @@ allbus2018 <- x[,vars]
 saveRDS(allbus2018, file = "allbus2018.rds", version=2)
 ```
 
+```{r, message=FALSE}
+library("mmstat4")
+allbus <- ghload("data/allbus2018.rds")
+str(allbus, give.attr=FALSE)
+```
+
 ## Body data
 
 The `sas body` data set consists of data about children taken from the SAS online documentation V8:
@@ -110,14 +110,14 @@ The `sas body` data set consists of data about children taken from the SAS onlin
 | height   | 	height in inches                        |
 | weight   | 	weight in pounds                        |
 
+```{r, echo=FALSE}
+saveRDS(import("sas_body.sav"), file = "body.rds", version=2)
+```
+
 ```{r}
 library("mmstat4")
 body <- ghload("data/body.rds")
 str(body, give.attr=FALSE)
-```
-
-```{r, echo=FALSE}
-saveRDS(import("sas_body.sav"), file = "body.rds", version=2)
 ```
 
 ## Boston Housing data
@@ -185,14 +185,14 @@ Data about concrete mixtures and resulting properties (Slump, Flow and Strength)
 * __Cement content__ Concretes containing a very high proportion of cement show excellent cohesiveness, but tend to be sticky. At a given water content, a considerable lowering of the cement content tends to produce harsh mixtures, with poor cohesiveness.
 * __Aggregate characteristics__ Very fine sands require more water for a given consistency; alternatively, they will produce harsh and unworkable mixtures at a water content that might have been adequate with coarser sands. Also, the particle size of coarse aggregate influences the water requirement for a given consistency.
 
+```{r, include=FALSE}
+saveRDS(import("concrete.sav"), file = "concrete.rds", version=2)
+```
+
 ```{r}
 library("mmstat4")
 concrete <- ghload("data/concrete.rds")
 str(concrete, give.attr=FALSE)
-```
-
-```{r, include=FALSE}
-saveRDS(import("concrete.sav"), file = "concrete.rds", version=2)
 ```
 
 ## Country data
@@ -210,14 +210,14 @@ The `country` are data about the most countries in the world in 1992.
 | lngdp    | log of GDP                               |
 | lnradio  | log of radios per 100 people             |
 
+```{r, include=FALSE}
+saveRDS(import("COUNTRY.SAV"), file = "country.rds", version=2)
+```
+
 ```{r}
 library("mmstat4")
 country <- ghload("data/country.rds")
 str(country, give.attr=FALSE)
-```
-
-```{r, include=FALSE}
-saveRDS(import("COUNTRY.SAV"), file = "country.rds", version=2)
 ```
 
 ## Current population survey (CPS)
@@ -239,14 +239,14 @@ The `cps`data are an excerpt of the current population survey of the US.
 | age      | Age (years)                              |
 | year     | Year of survey (either 78 or 85)         |
 
+```{r, include=FALSE}
+saveRDS(import("CPS78-85.sav"), file = "cps.rds", version=2)
+```
+
 ```{r}
 library("mmstat4")
 cps <- ghload("data/cps.rds")
 str(cps, give.attr=FALSE)
-```
-
-```{r, include=FALSE}
-saveRDS(import("CPS78-85.sav"), file = "cps.rds", version=2)
 ```
 
 ## Datasaurus
@@ -294,12 +294,6 @@ The General Social Survey data set is the US equivalent to ALLBUS.
 | happy    | General happiness (1=Very Happy, 2=Pretty happy, 3=Not too happy, NA=NAP/DK/NA)|
 | hapmar   | Happiness of marriage (coding as in happy)|
 
-```{r}
-library("mmstat4")
-gss <- ghload("gss.rds")
-str(gss, give.attr=FALSE)
-```
-
 ```{r, include=FALSE}
 x <- import("GSS.SAV")
 vars <- c(
@@ -329,6 +323,12 @@ gss <- x[,vars]
 saveRDS(gss, file = "gss.rds", version=2)
 ```
 
+```{r}
+library("mmstat4")
+gss <- ghload("gss.rds")
+str(gss, give.attr=FALSE)
+```
+
 ## Iris flower
 
 ```{r, echo=FALSE, warning=FALSE, printr.help.sections=c("description", "format", "source", "references")}
@@ -354,14 +354,14 @@ The Olympic decathlon data set gives the performances of 33 men's decathlon at t
 | @1500    | 1500 metres dash / 1500m Lauf      | seconds  ($0.03768(480-x)^{1.85}$)   |	
 | score    | Scores / Punkte                    | points                               |
 
+```{r, include=FALSE}
+saveRDS(import("olympic.sav"), file = "olympic.rds", version=2)
+```
+
 ```{r}
 library("mmstat4")
 cps <- ghload("data/olympic.rds")
 str(cps, give.attr=FALSE)
-```
-
-```{r, include=FALSE}
-saveRDS(import("olympic.sav"), file = "olympic.rds", version=2)
 ```
 
 ## Pechstein
@@ -379,14 +379,14 @@ The data set `pechstein_isu` contains the measurements used by the International
 | Tag           | Days since 1st Jan 2000            | 
 | Retikulozyten | Reticulocyte value                 | 
 
+```{r, include=FALSE}
+saveRDS(import("pechstein.csv",  sep="\t", dec=","), file = "pechstein.rds", version=2)
+```
+
 ```{r}
 library("mmstat4")
 pechstein <- ghload("data/pechstein.rds")
 str(pechstein, give.attr=FALSE)
-```
-
-```{r, include=FALSE}
-saveRDS(import("pechstein.csv",  sep="\t", dec=","), file = "pechstein.rds", version=2)
 ```
 
 ### `pechstein_isu`
@@ -401,14 +401,14 @@ otherwise it was taken at a competition site
 | place         | Place of measurement               | 
 | reti          | Reticulocyte value                 | 
 
+```{r, include=FALSE}
+saveRDS(import("pechstein_isu.csv"), file = "pechstein_isu.rds", version=2)
+```
+
 ```{r}
 library("mmstat4")
 pechstein_isu <- ghload("data/pechstein_isu.rds")
 str(pechstein_isu, give.attr=FALSE)
-```
-
-```{r, include=FALSE}
-saveRDS(import("pechstein_isu.csv"), file = "pechstein_isu.rds", version=2)
 ```
 
 ## Salary data
@@ -432,15 +432,14 @@ The data set contains information about 474 employees hired by the Harris Trust 
 | minority | minority classification    | white, nonwhite                      |
 | sexrace  | sex \& race classification | white males, minority males, white females, minority females|
 
+```{r, include=FALSE}
+saveRDS(import("salary.sav"), file = "salary.rds", version=2)
+```
 
 ```{r}
 library("mmstat4")
 salary<- ghload("data/salary.rds")
 str(salary, give.attr=FALSE)
-```
-
-```{r, include=FALSE}
-saveRDS(import("salary.sav"), file = "salary.rds", version=2)
 ```
 
 ## Swiss banknote data
@@ -458,14 +457,14 @@ The data are taken from the book of Flury, B. and Riedwyl, H. (1988). \textit{Mu
 
 [![Reverse of the Swiss 1000 franc note of the second banknote series (1911)](swissbanknote.jpg)](https://www.snb.ch/en/iabout/cash/history/id/cash_history_serie2\#t2)
 
+```{r, include=FALSE}
+saveRDS(import("BANK2.sav"), file = "bank2.rds", version=2)
+```
+
 ```{r}
 library("mmstat4")
 bank2 <- ghload("data/bank2.rds")
 str(bank2, give.attr=FALSE)
-```
-
-```{r, include=FALSE}
-saveRDS(import("BANK2.sav"), file = "bank2.rds", version=2)
 ```
 
 ## `datasets::Titanic`
