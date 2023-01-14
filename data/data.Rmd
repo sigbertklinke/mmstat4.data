@@ -2,10 +2,13 @@
 title: "Data"
 author: "Sigbert Klinke"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
-output: html_document
+output: 
+  html_document:
+    toc: true
 ---
 
 ```{r setup, include=FALSE}
+library("printr")
 knitr::opts_chunk$set(echo = TRUE)
 #
 allbus_data <- list(
@@ -30,16 +33,6 @@ allbus_data <- list(
   veukom                = "pt19",     # VERTRAUEN: KOMMISSION DER EU 
   veupar                = "pt20"      # VERTRAUEN: EUROPAEISCHES PARLAMENT 
   )
-#
-static_help <- function(pkg, topic, out, links = tools::findHTMLlinks()) {
-  pkgRdDB = tools:::fetchRdDB(file.path(find.package(pkg), 'help', pkg))
-  force(links)
-  out <- tempfile()
-  tools::Rd2latex(pkgRdDB[[topic]], out, package = pkg,
-                  Links = links, no_links = is.null(links))
-  out <- readLines(out)
-  gsub("%", "\n", out, fixed = TRUE)
-}
 ```
 
 All data sets, except Cereal data, are either part of R or can be downloaded from \url{https://shinyapps.wiwi.hu-berlin.de/d}.
@@ -72,7 +65,7 @@ ALLBUS 2018 data set (Allgemeine Bevölkerungsumfrage der Sozialwissenschaften).
 | `r allbus_data$veupar`                | VERTRAUEN: EUROPAEISCHES PARLAMENT       |
 
 ```{r}
-library("mmstat4")
+suppressPackageStartupMessages(library("mmstat4"))
 allbus <- ghload("data/allbus2018.rds")
 str(allbus)
 ```
@@ -119,7 +112,6 @@ The `sas body` data set consists of data about children taken from the SAS onlin
 
 ```{r}
 library("mmstat4")
-ghget("hu.data")
 body <- ghload("data/body.rds")
 str(body)
 ```
@@ -132,19 +124,19 @@ saveRDS(import("sas_body.sav"), file = "body.rds", version=2)
 
 ### `MASS::Boston`
 
-```{r, results='asis', echo=FALSE}
-cat(static_help("MASS", "Boston"), sep="\n")
+```{r, echo=FALSE, warning=FALSE, printr.help.sections=c("description", "format", "source")}
+?MASS::Boston
 ```
 
 ### `spData::boston.c`
 
-```{r, results='asis', echo=FALSE}
-cat(static_help("spData", "boston"), sep="\n")
+```{r, echo=FALSE, warning=FALSE, printr.help.sections=c("description", "format", "source", "references")}
+?spData::boston
 ```
 
 ## Cereal data
 
-```{r, echo=FALSE}
+```{r, include=FALSE}
 df <- data.frame(Child  = 1:25,
                  Cereal = strsplit("gggcttttgctgttgcttgtctgtt", "")[[1]],
                  Like   = strsplit("clnnccclcnclclcdcllclcllc", "")[[1]],
@@ -154,13 +146,16 @@ df$Cereal <- factor(df$Cereal, labels=c("Canary Crunch", "Ghostly Shadows",  "Tu
 df$Like   <- factor(df$Like,   labels=c("crazy", "don't know", "like", "not part"))
 df$Gift   <- factor(df$Gift,   labels=c("can't decide", "ring", "squirt gun", "whistle"))
 df$Gender <- factor(df$Gender,  labels=c("F", "M"))
+library("grid")
 library("gridExtra")
-png("cereal.png", height = 50*nrow(df), width = 200*ncol(df))
-grid.table(df)
+go        <- tableGrob(df)
+maxheight <- convertHeight(sum(go$heights), "in", TRUE)
+pdf("cereal.pdf", height=maxheight)
+grid.draw(go)
 dev.off()
 ```
 
-![](cereal.png)
+![](cereal.pdf)
 
 ## Concrete data
 
@@ -192,12 +187,11 @@ Data about concrete mixtures and resulting properties (Slump, Flow and Strength)
 
 ```{r}
 library("mmstat4")
-ghget("hu.data")
 concrete <- ghload("data/concrete.rds")
 str(concrete)
 ```
 
-```{r, echo=FALSE}
+```{r, include=FALSE}
 saveRDS(import("concrete.sav"), file = "concrete.rds", version=2)
 ```
 
@@ -218,12 +212,11 @@ The `country` are data about the most countries in the world in 1992.
 
 ```{r}
 library("mmstat4")
-ghget("hu.data")
 country <- ghload("data/country.rds")
 str(country)
 ```
 
-```{r, echo=FALSE}
+```{r, include=FALSE}
 saveRDS(import("COUNTRY.SAV"), file = "country.rds", version=2)
 ```
 
@@ -248,12 +241,11 @@ The `cps`data are an excerpt of the current population survey of the US.
 
 ```{r}
 library("mmstat4")
-ghget("hu.data")
 cps <- ghload("data/cps.rds")
 str(cps)
 ```
 
-```{r, echo=FALSE}
+```{r, include=FALSE}
 saveRDS(import("CPS78-85.sav"), file = "cps.rds", version=2)
 ```
 
@@ -300,12 +292,11 @@ The General Social Survey data set is the US equivalent to ALLBUS.
 
 ```{r}
 library("mmstat4")
-ghget("hu.data")
 gss <- ghload("gss.rds")
 str(gss)
 ```
 
-```{r, echo=FALSE}
+```{r, include=FALSE}
 x <- import("GSS.SAV")
 vars <- c(
 "age",
@@ -332,8 +323,8 @@ saveRDS(gss, file = "gss.rds", version=2)
 
 ## Iris flower
 
-```{r, results='asis', echo=FALSE}
-cat(static_help("datasets", "iris"), sep="\n")
+```{r, echo=FALSE, warning=FALSE, printr.help.sections=c("description", "format", "source", "references")}
+?iris
 ```
 
 ## Olympic decathlon
@@ -357,12 +348,11 @@ The Olympic decathlon data set gives the performances of 33 men's decathlon at t
 
 ```{r}
 library("mmstat4")
-ghget("hu.data")
 cps <- ghload("data/olympic.rds")
 str(cps)
 ```
 
-```{r, echo=FALSE}
+```{r, include=FALSE}
 saveRDS(import("olympic.sav"), file = "olympic.rds", version=2)
 ```
 
@@ -390,13 +380,12 @@ The data set contains information about 474 employees hired by the Harris Trust 
 
 ```{r}
 library("mmstat4")
-ghget("hu.data")
 salary<- ghload("data/salary.rds")
 str(salary)
 ```
 
-```{r, echo=FALSE}
-saveRDS(import("salary.sav"), file = "olympic.rds", version=2)
+```{r, include=FALSE}
+saveRDS(import("salary.sav"), file = "salary.rds", version=2)
 ```
 
 ## Swiss banknote data
@@ -412,22 +401,20 @@ The data are taken from the book of Flury, B. and Riedwyl, H. (1988). \textit{Mu
 | UPPER (X5)    | Distance of inner frame to the upper border    |
 | DIAGONAL (X6) | Length of the diagonal                         |
 
-[![Reverse of the Swiss 1000 franc note of the second banknote series (1911)](swissbanknote)](https://www.snb.ch/en/iabout/cash/history/id/cash_history_serie2\#t2)
+[![Reverse of the Swiss 1000 franc note of the second banknote series (1911)](swissbanknote.jpg)](https://www.snb.ch/en/iabout/cash/history/id/cash_history_serie2\#t2)
 
 ```{r}
 library("mmstat4")
-ghget("hu.data")
 bank2 <- ghload("data/bank2.rds")
 str(bank2)
 ```
 
-```{r, echo=FALSE}
+```{r, include=FALSE}
 saveRDS(import("BANK2.sav"), file = "bank2.rds", version=2)
 ```
 
-
 ## `datasets::Titanic`
 
-```{r, results='asis', echo=FALSE}
-cat(static_help("datasets", "Titanic"), sep="\n")
+```{r, echo=FALSE, warning=FALSE, printr.help.sections=c("description", "format", "source", "references")}
+?Titanic
 ```
