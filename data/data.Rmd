@@ -377,7 +377,7 @@ str(pechstein, give.attr=FALSE)
 ```
 
 ```{r, include=FALSE}
-saveRDS(import("pechstein.sav"), file = "pechstein.rds", version=2)
+saveRDS(import("pechstein.sav",  sep="\t", dec=","), file = "pechstein.rds", version=2)
 ```
 
 ### `pechstein_isu`
