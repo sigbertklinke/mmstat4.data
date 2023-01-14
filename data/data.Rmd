@@ -274,6 +274,7 @@ The General Social Survey data set is the US equivalent to ALLBUS.
 | age      | Age of Respondent                        |
 | sex      | Respondent's Sex (1=Male, 2=Female)      |
 | educ     | Highest Year of School Completed         | 
+| richwork | If Rich, Continue or Stop Working (1=Continue working, 2=Stop working)       | 
 | sibs     | Number of brothers and sisters           |
 | life     | Is life dull (=1), routine (=2) or exciting (=3)|
 | speduc   | Highest Year of School Completed by Spouse|
@@ -304,6 +305,7 @@ vars <- c(
 "age",
 "sex",
 "educ",
+"richwork",
 "sibs",
 "life",
 "speduc",
