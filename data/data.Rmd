@@ -356,6 +356,53 @@ str(cps, give.attr=FALSE)
 saveRDS(import("olympic.sav"), file = "olympic.rds", version=2)
 ```
 
+## Pechstein
+
+Claudia Pechstein is a German speed skater who has won five Olympic gold medals. With a total of nine Olympic medals, she was one of the most successful Olympic speed skaters. After the 2009 World Championships, Pechstein was accused of blood doping and banned from all competitions for two years.
+
+The data set `pechstein` contains the measurements published by the newspaper BILD in Germany.
+The data set `pechstein_isu` contains the measurements used by the International Skating Unit.
+
+### `pechstein`
+
+| Variable      | Content and coding                 | 
+|:--------------|:-----------------------------------|
+| Datum         | Day of measurement                 | 
+| Tag           | Days since first measurement       | 
+| Retikulozyten | Reticulocyte value                 | 
+
+```{r}
+library("mmstat4")
+pechstein <- ghload("data/pechstein.rds")
+str(pechstein, give.attr=FALSE)
+```
+
+```{r, include=FALSE}
+saveRDS(import("pechstein.sav"), file = "pechstein.rds", version=2)
+```
+
+### `pechstein_isu`
+
+`(Out of Competition)` means the measurement was taken in some training site, 
+otherwise it was taken at a competition site
+
+| Variable      | Content and coding                 | 
+|:--------------|:-----------------------------------|
+| no            | Number of measurement              | 
+| date          | Day of measurement                 | 
+| place         | Place of measurement               | 
+| reti          | Reticulocyte value                 | 
+
+```{r}
+library("mmstat4")
+pechstein_isu <- ghload("data/pechstein_isu.rds")
+str(pechstein_isu, give.attr=FALSE)
+```
+
+```{r, include=FALSE}
+saveRDS(import("pechstein_isu.csv"), file = "pechstein_isu.rds", version=2)
+```
+
 ## Salary data
 
 The data set contains information about 474 employees hired by the Harris Trust and Savings Bank between 1969 and 1971. The bank was involved into a Equal Employment Opportunity litigation were the data was used. For additional information see: 
