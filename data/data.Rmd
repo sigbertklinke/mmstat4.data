@@ -467,8 +467,72 @@ bank2 <- ghload("data/bank2.rds")
 str(bank2, give.attr=FALSE)
 ```
 
+## 1000 songs
+
+A data frame with 994 rows and 7 variables.
+
+| Variable      | Content and coding                             | 
+|:--------------|:-----------------------------------------------|
+| THEME         | Theme of song                                  |
+| TITLE         | Title                                          |
+| ARTIST        | Artist                                         |
+| YEAR          | Year of publication                            |
+| SPOTIFY_URL   | Link to open.spotify.com                       |
+| DECADE        | Decade of publication                          |
+| BAND          | Decade group (1910s-50s, 1960s, 1970s, ...)    |
+
+```{r, include=FALSE}
+x <- import("1000 songs.ods")
+x$DECADE <- floor(x$YEAR/10) * 10
+x$BAND <- paste(x$DECADE, "s", sep="")
+x$BAND[x$DECADE < 1960] <- "1910s-50s"
+saveRDS(x, file = "1000songs.rds", version=2)
+```
+
+```{r}
+library("mmstat4")
+songs <- ghload("data/1000songs.rds")
+str(songs, give.attr=FALSE)
+```
+
 ## `datasets::Titanic`
 
 ```{r, echo=FALSE, warning=FALSE, printr.help.sections=c("description", "format", "source", "references")}
 ?Titanic
 ```
+
+## `titanic3`
+
+The `titanic3` data frame describes the survival status of individual passengers on the Titanic. The titanic3 data frame does not contain information for the crew, but it does contain actual and estimated ages for almost 80% of the passengers.
+
+Thomas Cason of the University of Virginia has greatly updated and improved the titanic data frame using the [https://www.encyclopedia-titanica.org/titanic-passenger-list/](Encyclopedia Titanica) and created a new dataset called `titanic3`. This dataset reflects the state of data available as of August 2, 1999. Some duplicate passengers have been dropped; many errors have been corrected; many missing ages have been filled in; and new variables have been created.
+
+A data frame with 1309 observations on the following 14 variables:
+
+| Variable      | Content and coding                                                   | 
+|:--------------|:---------------------------------------------------------------------|
+| pclass        | Passenger Class (1 = 1st; 2 = 2nd; 3 = 3rd)                          |
+| survival      | Survival (0 = No; 1 = Yes)                                           |
+| name          | Name                                                                 |
+| sex           | Sex                                                                  |
+| age           | Age                                                                  |
+| sibsp         | Number of Siblings/Spouses Aboard                                    |
+| parch         | Number of Parents/Children Aboard                                    |
+| ticket        | Ticket Number                                                        |
+| fare          | Passenger Fare (British pound)                                       |
+| cabin         | Cabin                                                                |
+| embarked      | Port of Embarkation (C = Cherbourg; Q = Queenstown; S = Southampton) |
+| boat          | Lifeboat                                                             |
+| body          | Body Identification Number                                           |
+| home.dest     | Home/Destination                                                     |
+
+```{r, include=FALSE}
+saveRDS(import("titanic3.csv"), file = "titanic3.rds", version=2)
+```
+
+```{r}
+library("mmstat4")
+titanic3 <- ghload("data/titanic3.rds")
+str(titanic3, give.attr=FALSE)
+```
+
