@@ -412,7 +412,6 @@ pechstein_isu <- ghload("data/pechstein_isu.rds")
 str(pechstein_isu, give.attr=FALSE)
 ```
 
-
 ## Rental prices in cities
 
 In 2003, students in a statistics seminar at the Department of Statistics at Humboldt University in Berlin collected data on rental flats from newspaper advertisements from various German cities.
@@ -440,8 +439,6 @@ library("mmstat4")
 bank2 <- ghload("data/staedtemieten.rds")
 str(bank2, give.attr=FALSE)
 ```
-
-
 
 ## Salary data
 
@@ -568,3 +565,22 @@ titanic3 <- ghload("data/titanic3.rds")
 str(titanic3, give.attr=FALSE)
 ```
 
+## U.S. and New Mexico Highway Deaths
+
+U.S. and New Mexico highway fatalities per million vehicle-miles (1945-1984).
+
+| Variable      | Content and coding                                       | 
+|:--------------|:---------------------------------------------------------|
+| YR            | Year (1945=1)                                            |
+| NM            | New Mexico highway fatalities per million vehicle miles  |
+| US            | U.S. highway fatalities per million vehicle miles        |
+
+```{r, include=FALSE}
+saveRDS(import("fatalities_statlib.csv"), file = "fatalities.rds", version=2)
+```
+
+```{r}
+library("mmstat4")
+fatalities <- ghload("data/fatalities.rds")
+str(fatalities, give.attr=FALSE)
+```
