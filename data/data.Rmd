@@ -9,6 +9,7 @@ output:
 
 ```{r setup, include=FALSE}
 library("printr")
+library("rio")
 knitr::opts_chunk$set(echo = TRUE)
 #
 allbus_data <- list(
@@ -410,6 +411,37 @@ library("mmstat4")
 pechstein_isu <- ghload("data/pechstein_isu.rds")
 str(pechstein_isu, give.attr=FALSE)
 ```
+
+
+## Rental prices in cities
+
+In 2003, students in a statistics seminar at the Department of Statistics at Humboldt University in Berlin collected data on rental flats from newspaper advertisements from various German cities.
+
+The data frame consists 16777 observations and six variables.
+
+| Variable      | Content and coding                             | 
+|:--------------|:-----------------------------------------------|
+| Stadt         | City                                           |
+| Bezirk        | District                                       |
+| Zimmer        | Number of rooms                                |
+| Etage         | Floor of flat (0=Grund floor, >90=missing)     |
+| Miete         | Rent                                           |
+| Fläche        | Space                                          |
+
+
+```{r, include=FALSE}
+x <- import("StaedteMietenR.sav")
+x$Thema <- NULL
+saveRDS(x, file = "staedtemieten.rds", version=2)
+```
+
+```{r}
+library("mmstat4")
+bank2 <- ghload("data/staedtemieten.rds")
+str(bank2, give.attr=FALSE)
+```
+
+
 
 ## Salary data
 
