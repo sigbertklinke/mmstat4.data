@@ -6,7 +6,7 @@ ShinyApp() %>%
   PlotOutput('plot', file='dbscan2.R') %>%
   Global({
     library("dbscan")
-    library("rio")
+    library("mmstat4")
     x  <- scale(import("https://shinyapps.wiwi.hu-berlin.de/d/BANK2.sav"))
   }) %>%
   WriteApp()  

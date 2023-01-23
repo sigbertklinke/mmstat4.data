@@ -1,4 +1,5 @@
 # run generate_missing.R before
+library("mmstat4")
 ghsource('missing/generate_missing.R')
 library("mice")
 # run NORM

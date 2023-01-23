@@ -1,4 +1,5 @@
 # run example_mice.R before
+library("mmstat4")
 ghsource('missing/example_mice.R')
 #
 library("mitools")

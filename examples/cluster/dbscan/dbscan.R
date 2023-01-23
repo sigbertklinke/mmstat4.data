@@ -1,6 +1,6 @@
 # shinyApp/inst/app/dbscan/dbscan.R
 library("dbscan")
-library("rio")
+library("mmstat4")
 x  <- scale(import("https://shinyapps.wiwi.hu-berlin.de/d/BANK2.sav"))
 db   <- dbscan(x[,c(4,6)], value(input$eps), value(input$pts))
 col <- c('grey', rainbow(max(db$cluster)))

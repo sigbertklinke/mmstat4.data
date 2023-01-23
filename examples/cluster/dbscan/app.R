@@ -6,7 +6,7 @@ library("mmstat4")
 
 {
   library("dbscan")
-  data("bank2", package="mmstat4")
+  bank2 <- ghload("bank2.rds")
   x <- bank2
 }
 
