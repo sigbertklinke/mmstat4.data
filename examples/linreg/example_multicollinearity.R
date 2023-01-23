@@ -5,5 +5,5 @@ lm <- lm (medv~., data=x)
 library("car")
 vif(lm)
 #
-library("perturb")
-colldiag(lm)
+library("mctest")
+eigprop(lm)

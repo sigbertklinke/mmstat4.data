@@ -1,5 +1,5 @@
-library("rio")
-data("bank2", package="mmstat4")
+library("mmstat4")
+bank2 <- ghload("bank2.rds")
 par(mfrow=c(1,2))
 # do parallel analysis
 library("paran")

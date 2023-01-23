@@ -1,4 +1,5 @@
 library("boot")
+library("mmstat4")
 meanboot1 <- function (x, ind) {
   pdf("bootsample.pdf", width=10, height=6)
   par(mfrow=c(1,2))
@@ -9,6 +10,6 @@ meanboot1 <- function (x, ind) {
   dev.off()
 }
 set.seed(24961970)
-data("pechstein", package="mmstat4")
+pechstein <- ghload("pechstein.rds")
 b<-boot(pechstein$Retikulozyten, meanboot1, 1)
 if (interactive()) browseURL(paste0(getwd(),"/bootsample.pdf"))

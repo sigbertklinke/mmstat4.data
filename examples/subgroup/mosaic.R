@@ -1,18 +1,15 @@
-data <- read.csv("1000 songs.csv", as.is=c(FALSE, TRUE, FALSE, TRUE, TRUE))
-
-data$DECADE <- floor(as.numeric(data$YEAR)/10) * 10
-data$BAND <- paste(data$DECADE, "s", sep="")
-data$BAND[data$DECADE < 1960] <- "1910s-50s"
+library("mmstat4")
+thousand_songs <- ghload("1000songs.rds")
 
 pdf("mosaic1.pdf", bg="transparent")
-plot(table(data$BAND, data$THEME), col=rainbow(7), las=1, main="", bg="transparent")
+plot(table(thousand_songs$BAND, thousand_songs$THEME), col=rainbow(7), las=1, main="", bg="transparent")
 dev.off()
 
 pdf("mosaic2.pdf", bg="transparent")
-plot(table(data$THEME, data$BAND), col=rainbow(7), las=1, main="", bg="transparent")
+plot(table(thousand_songs$THEME, thousand_songs$BAND), col=rainbow(7), las=1, main="", bg="transparent")
 dev.off()
 
-tab <- table(data$BAND, data$THEME)
+tab <- table(thousand_songs$BAND, thousand_songs$THEME)
 tab2 <- outer(apply(tab,1,sum), apply(tab,2,sum))/sum(tab)
 pdf("mosaic3.pdf", bg="transparent")
 plot(as.table(tab2), col=rainbow(7), las=1, main="",, bg="transparent")

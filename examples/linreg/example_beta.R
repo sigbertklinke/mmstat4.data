@@ -1,5 +1,5 @@
-library("rio")
-data("cps78_85", package="mmstat4")
+library("mmstat4")
+cps78_85 <- ghload("cps.rds")
 xs  <- subset(cps78_85, year==85, c("lwage", "educ"))
 lms <- lm (scale(lwage)~scale(educ), data=xs)
 summary(lms)

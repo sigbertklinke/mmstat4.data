@@ -30,7 +30,7 @@ x    <- list(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11)
 pdf("andrews.pdf", width=10, height=6)
 par(mfrow=c(4,6), mar=c(0,0,0,0))
 for (i in 1:length(x)) {
-  xi <- x[[i]]
+  xi <- as.data.frame(x[[i]])
   plot (xi, pch=19, cex=0.75, axes=F)
   box()
   andrews(xi, ymax=1.5)

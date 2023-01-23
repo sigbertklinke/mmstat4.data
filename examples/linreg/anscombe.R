@@ -1,9 +1,12 @@
 library("lattice")
-data("anscombe", package="mmstat4")
+anscombelong <- data.frame(X=unlist(anscombe[,1:4]), Y=unlist(anscombe[,5:8]), ID=(0:43)%/%11)
 pdf("anscombe.pdf", bg="transparent")
-xyplot(Y~X|ID, data=anscombe, main="Anscombe quartet", panel=function(x, y){
+opar <- par(mfrow=c(2,2))
+plot <- xyplot(Y~X|ID, data=anscombelong, main="Anscombe quartet", panel=function(x, y){
   panel.xyplot(x, y)
   panel.lmline(x, y)
 })
+print(plot)
+par(opar)
 dev.off()
 if (interactive()) browseURL(paste0(getwd(),"/anscombe.pdf"))

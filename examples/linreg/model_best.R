@@ -1,7 +1,7 @@
-data("bostonh", package="mmstat4")
-bhd   <- bostonh[,-c(4,9)]
+data(Boston, package="MASS")
+bhd   <- Boston[,-c(4,9)]
 vars  <- names(bhd)[-12]
-lmi   <- lm(MEDV~1, data=bostonh)
+lmi   <- lm(medv~1, data=Boston,)
 best  <- c(r2=summary(lmi)$r.squared, r2adj=summary(lmi)$adj.r.squared,
            aic=AIC(lmi), bic=BIC(lmi))
 model <- list(r2="1", r2adj="1", aic="1", bic="1")
@@ -9,7 +9,7 @@ model <- list(r2="1", r2adj="1", aic="1", bic="1")
 for (i in ((1:2^12)-1)) {
   s   <- as.logical(intToBits(i))[1:12]
   fm  <- paste0(vars[s[-1]], collapse="+")
-  fm  <- paste0("MEDV~", fm, "+1")
+  fm  <- paste0("medv~", fm, "+1")
   lmi <- lm(as.formula(fm), data=bhd)
   if (summary(lmi)$r.square>best["r2"]) {
     best["r2"] <- summary(lmi)$r.square

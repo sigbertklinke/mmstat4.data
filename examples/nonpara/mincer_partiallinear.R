@@ -1,13 +1,14 @@
 library("plot.3d")
-data("cps78_85", package="mmstat4")
+library("mmstat4")
+cps78_85 <- ghload("cps.rds")
 # select only year=85
 x <- cps78_85[cps78_85$year==85,]
 #
 library("gam")
 plm <- gam(lwage~educ+s(exper), data=x)
 summary(plm)
-maxres <- max(abs(resid(ppr2)))
-pdf("mincer_partiallinear.pdf", width=10, height=6) 
+maxres <- max(abs(resid(plm)))
+pdf("mincer_partiallinear.pdf", width=10, height=6)
 par(mfrow=c(1,2), oma=c(1,0,2,0))
 new3d("s") %>% regression3d(plm, x) %>% plot3d()
 new3d("c") %>% regression3d(plm, x) %>% plot3d()

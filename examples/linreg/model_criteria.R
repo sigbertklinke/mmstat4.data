@@ -1,15 +1,15 @@
-data("bostonh", package="mmstat4")
-bhd  <- bostonh[,-c(4,9)]
+data("Boston", package="MASS")
+bhd  <- Boston[,-c(4,9)]
 vars <- names(bhd)[-12]
-lmi  <- lm(MEDV~1, data=bostonh)
+lmi  <- lm(medv~1, data=Boston)
 crit <- list(r2=summary(lmi)$r.squared,
              r2adj=summary(lmi)$adj.r.squared,
              aic=AIC(lmi), bic=BIC(lmi))
 model <- "1"
 for (i in seq(vars)) {
-  res   <- add1(lmi, as.formula(paste0("MEDV~", paste0(vars, collapse="+"))))
+  res   <- add1(lmi, as.formula(paste0("medv~", paste0(vars, collapse="+"))))
   model <- c(model, row.names(res)[which.min(res$RSS)])
-  lmi <- lm(as.formula(paste0("MEDV~", paste0(model, collapse="+"))), data=bostonh)
+  lmi <- lm(as.formula(paste0("medv~", paste0(model, collapse="+"))), data=Boston)
   crit$r2    <- c(crit$r2, summary(lmi)$r.squared)
   crit$r2adj <- c(crit$r2adj, summary(lmi)$adj.r.squared)
   crit$aic   <- c(crit$aic, AIC(lmi))

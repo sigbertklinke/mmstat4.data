@@ -1,3 +1,4 @@
 library("foreign")
-x <- read.spss ("BOSTONH.SAV", to.data.frame=T)
+data <- system.file("extdata", "BOSTONH.SAV", package="mmstat4")
+x    <- read.spss (data, to.data.frame=T)
 dim(x)

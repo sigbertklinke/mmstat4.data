@@ -1,9 +1,7 @@
 library("QuantPsyc")
-
-x <- read.csv2("cps78_85.csv")
-# select only year=85
-x <- x[x$year==85,]
-
+library("mmstat4")
+cps78_85 <- ghload("cps.rds")
+x  <- subset(cps78_85, year==85)
 
 pdf("predictor2.pdf", width=10, height=5)
 plot(x$educ, type="b", main="Sequence plot of education", ylab="Education (in years)", pch=19)

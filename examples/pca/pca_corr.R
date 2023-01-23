@@ -1,6 +1,7 @@
 library("foreign")
 library("psych")
-data("bank2", package="mmstat4")
+library("mmstat4")
+bank2 <- ghload("bank2.rds")
 pc  <- principal(bank2, nfactors = 2, rotate="none")
 pcc <- cor(cbind(pc$scores, bank2))[-(1:2),1:2]
 

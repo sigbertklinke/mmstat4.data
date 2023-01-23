@@ -33,8 +33,8 @@ computeColors <- function (value, maxval, ncolor=50) {
 
 plotModel <- function (regobj, x, educ, exper, maxres, pp=list(cex=0.75), header=NULL, ...) {
 # two-dimensional grid 20x20
-  educ  <- seq(min(x$educ), max(x$educ), length.out=20) 
-  exper <- seq(min(x$exper), max(x$exper), length.out=20) 
+  educ  <- seq(min(x$educ), max(x$educ), length.out=20)
+  exper <- seq(min(x$exper), max(x$exper), length.out=20)
 # plotting
   par(mfrow=c(1,2), oma=c(1,0,2,0))
   color <- computeColors(resid(regobj), maxres)
@@ -49,7 +49,7 @@ plotModel <- function (regobj, x, educ, exper, maxres, pp=list(cex=0.75), header
   s3d<-scatterplot3d(xr, yr, zr, type="n", ...)
   s3d$points3d(x$educ, x$exper, rep(ifelse(front[3], zr[1], zr[2]), n), col="gray", cex=0.25)
   s3d$points3d(x$educ, rep(ifelse(front[2], yr[1], yr[2]), n), x$lwage, col="gray", cex=0.25)
-  s3d$points3d(rep(ifelse(front[1], xr[1], xr[2]), n), x$exper, x$lwage,, col="gray", cex=0.25)
+  s3d$points3d(rep(ifelse(front[1], xr[1], xr[2]), n), x$exper, x$lwage, col="gray", cex=0.25)
   s3d$points3d(x$educ[resid<0], x$exper[resid<0], x$lwage[resid<0], col=color[resid<0], pch=19, cex=0.75)
   addSurface(s3d, regobj, educ, exper)
   s3d$points3d(x$educ[resid>=0], x$exper[resid>=0], x$lwage[resid>=0], col=color[resid>=0], pch=19, cex=0.75)
@@ -67,13 +67,10 @@ library("scatterplot3d")
 library("locfit")
 library("np")
 library("gam")
-
-x <- read.csv2("cps78_85.csv")
+library("mmstat4")
+cps78_85 <- ghload("cps.rds")
 # select only year=85
-x <- x[x$year==85,]
-
-x2 <- read.table("cps85.csv", header=T)
-
+x <- cps78_85[cps78_85$year==85,]
 # estimate linear model 1 (exper only linear !)
 lr1 <- lm (lwage~educ+exper, data=x)
 summary(lr1)
@@ -117,7 +114,7 @@ summary(am)
 plotModel (am, x, educ, exper, maxres, header="Additive Model")
 #dev.off()
 
-# estimate Partial Linear Model 
+# estimate Partial Linear Model
 plm <- gam(lwage~educ+s(exper), data=x)
 summary(plm)
 #png("mincer_partiallinear.png", width=1280, height=800)

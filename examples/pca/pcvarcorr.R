@@ -49,8 +49,8 @@ plot.matrix <- function(x, y, digits=NA, col=heat.colors(12), breaks=NULL, key=T
   }
 }
 
-library("rio")
-data("bank2", package="mmstat4")
+library("mmstat4")
+bank2 <- ghload("bank2.rds")
 pc <- prcomp(bank2, retx=TRUE)
 c  <- cor(cbind(bank2, pc$x))[1:6, 7:12]
 library("gplots")

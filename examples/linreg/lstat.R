@@ -1,6 +1,6 @@
-data("bostonh", package="mmstat4")
+data("Boston", package="MASS")
 library("car")
-lm     <- lm(MEDV~LSTAT, data=bostonh)
+lm     <- lm(medv~lstat, data=Boston)
 lmboot <- Boot(lm)
 pdf("lstat.pdf", width=10, height=3)
 hist(lmboot)

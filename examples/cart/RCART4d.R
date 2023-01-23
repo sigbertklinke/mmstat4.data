@@ -1,4 +1,5 @@
-data("cps78_85", package="mmstat4")
+library("mmstat4")
+x <- ghload("cps.rds")
 # select only year=85
 x <- x[x$year==85,]
 library("rpart")

@@ -1,5 +1,5 @@
-library("rio")
-data("bank2", package="mmstat4")
+library("mmstat4")
+bank2 <- ghload("bank2.rds")
 # do PCA (covariance)
 pc <- prcomp(bank2)
 pc

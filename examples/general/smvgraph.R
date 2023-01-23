@@ -1,3 +1,3 @@
 # devtools::install_github("sigbertklinke/smvgraph")
 library("smvgraph")
-splot() # or splot(iris)
+if (interactive()) splot() # or splot(iris)

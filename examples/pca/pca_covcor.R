@@ -1,10 +1,9 @@
-library("foreign")
 library("paran")
-x <- read.spss("BANK2.sav", to.data.frame=T)
-
-px <- prcomp(x)
+library("mmstat4")
+bank2 <- ghload("bank2.rds")
+px <- prcomp(bank2)
 lx <- px$sdev^2
-pz <- prcomp(x, scale=T)
+pz <- prcomp(bank2, scale=T)
 lz <- pz$sdev^2
 
 pdf("pca_covcor.pdf", width=10, height=6)
@@ -22,7 +21,7 @@ plot(seq(lz), lz, main="Scree (correlation)", type="b", pch=19, xlab="index", yl
 abline(h=mean(lz), col="green", lwd=2)
 p90 <- sum(cumsum(lz)/sum(lz)<0.9)
 abline(v=p90+1.5, col="red", lwd="2")
-hx <-paran(x, iterations=1000, centile=95)
+hx <-paran(bank2, iterations=1000, centile=95)
 lines(seq(lz), hx$RndEv, col="blue", lwd=2)
 points(seq(lz), hx$RndEv, col="blue", pch=19)
 plot(pz$x[,2], pz$x[,3], pch=19, xlab="PC2", ylab="PC3")

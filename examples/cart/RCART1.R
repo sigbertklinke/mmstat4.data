@@ -1,7 +1,7 @@
 dop <- T
-x <- read.csv2("cps78_85.csv")
-# select only year=85
-x <- x[x$year==85,]
+library("mmstat4")
+cps78_85 <- ghload("cps.rds")
+x <- subset(cps78_85, year==85)
 #
 library("rpart")
 fit<-rpart(lwage~educ+exper, data=x)

@@ -66,10 +66,32 @@ plotModel <- function (regobj, x, educ, exper, maxres, pp=list(cex=0.75), header
 dop <- T
 library("scatterplot3d")
 library("nnet")
-library("rio")
-data("cps78_85", package="mmstat4")
+library("mmstat4")
+cps78_85 <- ghload("cps.rds")
 # select only year=85
 x <- cps78_85[cps78_85$year==85,]
+
+# estimate neural networks
+sizes <- c(2,3,5,10)
+
+set.seed(0)
+train  <- runif(nrow(x))<2/3
+xtrain <- x[train,]
+xvalid <- x[!train,]
+B      <- 100
+error  <- array(NA, dim=c(B, length(sizes), 2))
+for (i in seq(sizes)) {
+  for (j in 1:B) {
+    set.seed(0)
+    nn <- nnet(lwage~educ+exper, data=xtrain, maxit=j, size=sizes[i], linout=T)
+    error[j,i,1] <- mean(nn$residuals^2)
+    plwage <- predict(nn, newdata=xvalid)
+    error[j,i,2] <- mean((plwage-xvalid$lwage)^2)
+  }
+}
+minerrpos <- apply(error[,,2], 2, which.min)
+minerror <- apply(error, c(2,3), min)
+
 
 size <- 5
 file <- sprintf("mincer_nnet%.0f.pdf", size)

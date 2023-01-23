@@ -1,7 +1,15 @@
-titanic <- read.csv("titanic3.csv")
-titanic$child <- (titanic$age<15)
-titanic$child[is.na(titanic$child)] <- F
-#pdf("RCART3b.pdf", width=10, height=4)
+library("mmstat4")
+titanic3 <- ghload("titanic3.rds")
+titanic3$child <- (titanic3$age<15)
+titanic3$child[is.na(titanic3$child)] <- F
+#
+index<-order(titanic3$age)
+#
+age <- titanic3$age[index[1:22]]
+surv <- titanic3$survived[index[1:22]]
+pred <- apply(table(age, surv), 1, which.max)
+#
+pdf("RCART3b.pdf", width=10, height=4)
 plot(0,0, type="n", xlim=c(0,max(age)), ylim=c(-1, 2), xlab="Age", axes=F, ylab="Survived")
 #
 axis(1)

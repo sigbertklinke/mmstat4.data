@@ -1,4 +1,4 @@
-library("plot3d")
+library("plot.3d")
 data(Boston, package="MASS")
 model <- lm(medv~lstat+rm, data=Boston)
 par(mfrow=c(1,1))

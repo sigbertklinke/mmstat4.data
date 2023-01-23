@@ -2,7 +2,8 @@ library("boot")
 meanboot <- function (x, ind) { return(mean(x[ind])); }
 
 set.seed(0)
-data("pechstein", package="mmstat4")
+library("mmstat4")
+pechstein <- ghload("pechstein.rds")
 b <- boot(pechstein$Retikulozyten, meanboot, 999)
 pdf("bootconf.pdf", width=6, height=6)
 hist(b$t, breaks=30, main="Bootstrap sample means", xlab="mean of reticulocyte")
@@ -26,4 +27,4 @@ xb+k*s/sqrt(length(pechstein$Retikulozyten))
 # bootstrap
 st <- sort(b$t)
 st[floor(0.025*length(st))]
-st[ceiling(0.975*length(st))] 
+st[ceiling(0.975*length(st))]

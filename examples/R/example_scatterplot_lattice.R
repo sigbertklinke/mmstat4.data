@@ -1,4 +1,5 @@
 library("MASS")  # for Boston Housing data
 # lattice
 library("lattice")
-xyplot(medv~lstat, data=Boston)
+p <- xyplot(medv~lstat, data=Boston)
+print(p)  # in interactive mode xyplot(...) is sufficient

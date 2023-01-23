@@ -1,6 +1,6 @@
-library("rio")
-data("staedtemietenr", package="mmstat4")
-x  <- staedtemietenr[complete.cases(staedtemietenr),]
+library("mmstat4")
+staedtemieten <- ghload("staedtemieten.rds")
+x  <- staedtemieten[complete.cases(staedtemieten),]
 lm <- lm (Miete~Fläche, data=x)
 summary(lm)
 plot(x$Fläche, residuals(lm))

@@ -1,6 +1,6 @@
-library("rio")
+library("mmstat4")
 library("boot")
-data("bank2", package="mmstat4")
+bank2 <- ghload("bank2.rds")
 bank2    <- scale(bank2)
 evx  <- prcomp(bank2)$sdev^2
 xdim <- dim(bank2)

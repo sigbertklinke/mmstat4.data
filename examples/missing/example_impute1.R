@@ -1,6 +1,6 @@
-data("allbus2012", package="mmstat4")
-body        <- as.data.frame(allbus2012)
-names(body) <- c("age", "height", "weight")
+library("mmstat4")
+body <- ghload("data/allbus2012.rds")
+body <- body[,c("age", "height", "weight")]
 # number of NAs
 nabody <- is.na(body)
 apply(nabody, 2, sum)

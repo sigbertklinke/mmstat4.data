@@ -1,5 +1,6 @@
 library("plot.3d")
-data("cps78_85", package="mmstat4")
+library("mmstat4")
+cps78_85 <- ghload("cps.rds")
 # select only year=85
 x <- cps78_85[cps78_85$year==85,]
 # estimate linear model 2

@@ -1,10 +1,10 @@
-x <- read.csv2("cps78_85.csv")
-# select only year=85
-x <- x[x$year==85,]
-
+library("mmstat4")
+cps78_85 <- ghload("cps.rds")
+x <- subset(cps78_85, year==85)
+#
 lrfit <- lm (lwage~educ+exper, data=x)
 summary(lrfit)
-
+#
 library("rpart")
 fit <- rpart(lwage~educ+exper, data=x, method="anova")
 pdf("RCART4a.pdf", width=10, height=5)

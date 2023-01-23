@@ -1,6 +1,6 @@
-library("rio")
+library("mmstat4")
 library("psych")
-data("bank2", package="mmstat4")
+bank2 <- ghload("bank2.rds")
 #
 pdf("scree.pdf", width=10, height=7, bg="transparent")
 par(mfrow=c(1,2))

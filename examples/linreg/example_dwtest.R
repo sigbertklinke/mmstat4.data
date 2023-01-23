@@ -1,8 +1,8 @@
-data("fatalities_statlib", package="mmstat4")
-# see http://lib.stat.cmu.edu/DASL/Stories/hwfatal.html
-lm <- lm (US~YR, data=fatalities_statlib)
+library("mmstat4")
+fatalities <- ghload("fatalities.rds")
+lm <- lm (US~YR, data=fatalities)
 summary(lm)
-plot(fatalities_statlib$YR, fatalities_statlib$US)
+plot(fatalities$YR, fatalities$US)
 abline(lm, col="red")
 #
 library("car")

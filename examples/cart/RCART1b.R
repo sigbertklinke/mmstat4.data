@@ -1,8 +1,11 @@
-data("cps78_85", package="mmstat4")
+library("mmstat4")
+cps78_85 <- ghload("cps.rds")
 # select only year=85
 x <- cps78_85[cps78_85$year==85,]
 #
 library("rpart")
+library("rpart.plot")
+fit<-rpart(lwage~educ+exper, data=x)
 library("RColorBrewer")
 leafnodes  <- as.numeric(rownames(fit$frame)[fit$frame[,1]=="<leaf>"])
 leafindex  <- (1:nrow(fit$frame))[fit$frame[,1]=="<leaf>"]
@@ -49,5 +52,3 @@ for (i in 1:length(leafnodes)) {
 }
 dev.off()
 if (interactive()) browseURL(paste0(getwd(),"/RCART1b.pdf"))
-
-

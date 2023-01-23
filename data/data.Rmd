@@ -36,7 +36,33 @@ allbus_data <- list(
   )
 ```
 
-All data sets, except Cereal data, are either part of R or can be downloaded from \url{https://shinyapps.wiwi.hu-berlin.de/d}.
+All data sets, except Cereal data, are either part of R or the repository `hu.data`.
+
+## ALLBUS 2012
+
+ALLBUS 2012 data set (Allgemeine Bevölkerungsumfrage der Sozialwissenschaften).
+
+| Variable | Content and coding                       |
+|:---------|:-----------------------------------------|
+| sex      | 	sex of respondent (1=male, 2=female)    |
+| age      | 	age in years                            |
+| height   | 	height in cm                            |
+| weight   | 	weight in kg                            |
+
+```{r, echo=FALSE}
+library("rio")
+x <- import("ALLBUS2012.SAV")
+vars <- c(sex='v217', age='v220', height='v593', weight='v595')
+allbus2012 <- x[,vars]
+names(allbus2012) <- names(vars)
+saveRDS(allbus2012, file = "allbus2012.rds", version=2)
+```
+
+```{r, message=FALSE}
+library("mmstat4")
+allbus <- ghload("data/allbus2012.rds")
+str(allbus, give.attr=FALSE)
+```
 
 ## ALLBUS 2018
 

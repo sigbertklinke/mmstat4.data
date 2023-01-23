@@ -1,5 +1,5 @@
-library("rio")
-data("cps78_85", package="mmstat4")
+library("mmstat4")
+cps78_85 <- ghload("cps.rds")
 library("car")
 lm <- lm (lwage~educ, data=cps78_85, subset=(year==85))
 lmboot <- Boot(lm)

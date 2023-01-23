@@ -1,11 +1,12 @@
-titanic <- read.csv("titanic3.csv")
-titanic$child <- (titanic$age<15)
-titanic$child[is.na(titanic$child)] <- F
+library("mmstat4")
+titanic3 <- ghload("titanic3.rds")
+titanic3$child <- (titanic3$age<15)
+titanic3$child[is.na(titanic3$child)] <- F
 #
-index<-order(titanic$age)
+index<-order(titanic3$age)
 #
-age <- titanic$age[index[1:22]]
-surv <- titanic$survived[index[1:22]]
+age <- titanic3$age[index[1:22]]
+surv <- titanic3$survived[index[1:22]]
 #
 pred <- apply(table(age, surv), 1, which.max)
 #
@@ -40,8 +41,8 @@ for (i in 1:(length(predage)-1)) {
 right<-max(predage)
 lines(c(left,right), c(0.5,0.5), col=bluered[pred[length(predage)]], lwd=5)
 #
-age <- titanic$age[index[1:1046]]
-surv <- titanic$survived[index[1:1046]]
+age <- titanic3$age[index[1:1046]]
+surv <- titanic3$survived[index[1:1046]]
 #
 pred <- apply(table(age, surv), 1, which.max)
 #

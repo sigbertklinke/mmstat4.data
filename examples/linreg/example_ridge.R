@@ -2,7 +2,7 @@ library("MASS")
 bhd <- Boston[,-9]
 # find lambda
 lmridge <- lm.ridge(medv~., data=bhd, lambda=seq(0, 10, 0.01))
-select(lmridge)
+MASS::select(lmridge)
 # ridge traces
 plot(lmridge)
 # compare coefficients

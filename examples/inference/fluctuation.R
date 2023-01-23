@@ -1,7 +1,7 @@
 x <- (0:1500)/100
 y <- dchisq(x, 5)
 cl <- 1+trunc(100*qchisq(0.05, 5))
-cu <- 1+ceiling(100*qchisq(0.95, 5))          
+cu <- 1+ceiling(100*qchisq(0.95, 5))
 
 pdf("fluctuation.pdf", width=5, height=2)
 par(mar=c(0,0,3,0))
@@ -16,7 +16,7 @@ lines(c(x[cu], x[cu]), c(0, y[cu]))
 text(x[cl],0, labels=expression(theta-c[l]), pos=1)
 text(x[cu],0, labels=expression(theta+c[u]), pos=1)
 text(x[cl], y[cl], labels=expression(alpha/2), pos=2)
-text(x[co], y[cl], labels=expression(alpha/2), pos=4)
+text(x[cl], y[cl], labels=expression(alpha/2), pos=4)
 text(3, y[cl], labels=expression(1-alpha), pos=4)
 dev.off()
 if (interactive()) browseURL(paste0(getwd(),"/fluctuation.pdf"))

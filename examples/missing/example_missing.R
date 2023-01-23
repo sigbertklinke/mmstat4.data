@@ -1,4 +1,5 @@
-data("allbus2018", package="mmstat4")
+library("mmstat4")
+allbus2018 <- ghload("allbus2018.rds")
 vars  <- startsWith(names(allbus2018), "pt")
 trust <- allbus2018[,vars]
 # count number of missing values

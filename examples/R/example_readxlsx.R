@@ -1,3 +1,4 @@
 library("xlsx")
-x <- read.xlsx("kriegsschiffe.xlsx", 1)
+data <- system.file("extdata", "kriegsschiffe.xlsx", package="mmstat4")
+x <- read.xlsx(data, sheetIndex=1)
 dim(x)

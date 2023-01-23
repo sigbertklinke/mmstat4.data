@@ -65,8 +65,8 @@ plotModel <- function (regobj, x, educ, exper, maxres, pp=list(cex=0.75), header
 
 library("scatterplot3d")
 library("nnet")
-library("rio")
-data("cps78_85", package="mmstat4")
+library("mmstat4")
+cps78_85 <- ghload("cps.rds")
 # select only year=85
 x <- cps78_85[cps78_85$year==85,]
 
