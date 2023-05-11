@@ -1,4 +1,4 @@
-## -----------------------------------------------------------------------------------------------------
+## -----------------------------------------------------------------------------------------------------------------------
 err <- function (v) { sum(v)-max(v) }
 library("mmstat4")
 gss <- ghload("data/gss.rds")
@@ -21,7 +21,6 @@ e2<-apply(tab, 2, err)
 e2
 (ehapmar-sum(e2))/ehapmar
 #d
-library("ryouready")
 # cols = happy dependent
 # rows = hapmar dependent
 nom.lambda(tab)

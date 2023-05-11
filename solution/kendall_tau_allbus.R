@@ -1,4 +1,4 @@
-## -----------------------------------------------------------------------------------------------------
+## -----------------------------------------------------------------------------------------------------------------------
 library("mmstat4")
 allbus <- ghload("data/allbus2018.rds")
 tab <- table(allbus$ep03, allbus$ep06)
@@ -77,6 +77,5 @@ print(c(C=C, D=D, Tx=Tx, Ty=Ty, Txy=Txy))
 print(C+D+Tx+Ty+Txy)
 print(Sys.time()-start)
 #e
-library("ryouready")
 ord.tau(cbind(x, y))
 

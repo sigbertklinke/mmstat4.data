@@ -1,4 +1,4 @@
-## -----------------------------------------------------------------------------------------------------
+## -----------------------------------------------------------------------------------------------------------------------
 library("mmstat4")
 bank2 <- ghload("data/bank2.rds")
 ## a.i
@@ -8,7 +8,7 @@ col <- c(rep(3, 100), rep(2, 100))
 parcoord(bank2, col=col)
 ## a.ii
 # devtools::install_github("sigbertklinke/smvgraph")
-library("smvgraph")
+library("andrews")
 andrews(bank2)
 #
 andrews(bank2, col=col)
