@@ -1,3 +1,3 @@
 library("MASS")  # for Boston Housing data
 library("andrews")
-andrews(Boston)
+andrews(Boston, ymax = NA)

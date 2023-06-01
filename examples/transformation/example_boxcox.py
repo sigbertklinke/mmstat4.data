@@ -11,3 +11,4 @@ axs[2].hist(yjcrim); axs[2].set_title(f"yj(crim, {lyj:.3f})")
 for ax in axs:
     ax.tick_params(axis='y', rotation=90, labelsize=8)
 plt.show()
+plt.close()

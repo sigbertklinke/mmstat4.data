@@ -1,4 +1,6 @@
 library("MASS")  # for Boston Housing data
 library("outliers")
-grubbs.test(Boston$medv)
-grubbs.test(Boston$medv, opposite=T)
+set.seed(0)
+crim <- sample(Boston$crim, 200)
+grubbs.test(crim)
+grubbs.test(crim, opposite=T)
