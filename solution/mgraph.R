@@ -1,4 +1,4 @@
-## ------------------------------------------------------------------------------------------------------------------------------
+## ----------------------------------------------------------------------------------------------------------------
 library("mmstat4")
 bank2 <- ghload("data/bank2.rds")
 ## a.i
@@ -9,9 +9,12 @@ parcoord(bank2, col=col)
 ## a.ii
 # devtools::install_github("sigbertklinke/smvgraph")
 library("andrews")
-andrews(bank2)
+andrews(bank2, ymax=NA)
+# each datapoint a different color
+library("viridisLite")
+andrews(bank2, clr=viridis(nrow(bank2)), ymax=NA)
 #
-andrews(bank2, col=col)
+andrews(bank2, clr=col, ymax=NA)
 ## a.iv
 o <- order(apply(bank2, 2, IQR), decreasing=TRUE)
 o
@@ -24,13 +27,15 @@ library("scagnostics")
 s <- scagnostics(Boston)
 #s
 s["Monotonic",]
-plot(Boston$lstat, Boston$medv)
+which.max(s["Monotonic",])
+plot(Boston$nox, Boston$dis)    # 0.760
+plot(Boston$lstat, Boston$medv) # 0.749
 ## b.ii
 parcoord(Boston)
 ## b.iii
-andrews(Boston)
+andrews(Boston, ymax=NA)
 ## b.iv
 o <- order(apply(bank2, 2, IQR), decreasing=TRUE)
 parcoord(Boston[,o])
-andrews(Boston[,o])
+andrews(Boston[,o], ymax=NA)
 
