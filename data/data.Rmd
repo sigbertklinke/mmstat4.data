@@ -7,10 +7,15 @@ output:
     toc: true
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, logo=FALSE}
 library("printr")
 library("rio")
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, logo=TRUE)
+knitr::knit_hooks$set(logo = function(before, options) {
+  if (before && options$logo) {
+    sprintf("![](%slogo.png)", options$engine)
+  }
+})
 #
 allbus_data <- list(
   erhebungsgebiet       = "eastwest", # ERHEBUNGSGEBIET (WOHNGEBIET): WEST - OST
@@ -36,6 +41,10 @@ allbus_data <- list(
   )
 ```
 
+```{python python-setup, include=FALSE, logo=FALSE}
+import rpy2, rpy2.robjects.pandas2ri as rop
+```
+
 All data sets, except Cereal data, are either part of R or the repository `hu.data`.
 
 ## ALLBUS 2012
@@ -49,7 +58,7 @@ ALLBUS 2012 data set (Allgemeine Bevölkerungsumfrage der Sozialwissenschaften).
 | height   | 	height in cm                            |
 | weight   | 	weight in kg                            |
 
-```{r, echo=FALSE}
+```{r, include=FALSE}
 library("rio")
 x <- import("ALLBUS2012.SAV")
 vars <- c(sex='v217', age='v220', height='v593', weight='v595')
@@ -62,6 +71,13 @@ saveRDS(allbus2012, file = "allbus2012.rds", version=2)
 library("mmstat4")
 allbus <- ghload("data/allbus2012.rds")
 str(allbus, give.attr=FALSE)
+```
+
+```{python, message=FALSE, warning=FALSE}
+#import rpy2, rpy2.robjects.pandas2ri as rop
+rpy2.robjects.r('allbus = mmstat4::ghload("data/allbus2012.rds")')
+allbus = rop.rpy2py(rpy2.robjects.r["allbus"])
+allbus.info()
 ```
 
 ## ALLBUS 2018
@@ -91,7 +107,7 @@ ALLBUS 2018 data set (Allgemeine Bevölkerungsumfrage der Sozialwissenschaften).
 | `r allbus_data$veukom`                | VERTRAUEN: KOMMISSION DER EU             |
 | `r allbus_data$veupar`                | VERTRAUEN: EUROPAEISCHES PARLAMENT       |
 
-```{r, echo=FALSE}
+```{r, include=FALSE}
 library("rio")
 x <- import("ALLBUS2018.sav")
 vars <- c(
@@ -126,6 +142,13 @@ allbus <- ghload("data/allbus2018.rds")
 str(allbus, give.attr=FALSE)
 ```
 
+```{python, message=FALSE, warning=FALSE}
+#import rpy2, rpy2.robjects.pandas2ri as rop
+rpy2.robjects.r('allbus = mmstat4::ghload("data/allbus2018.rds")')
+allbus = rop.rpy2py(rpy2.robjects.r["allbus"])
+allbus.info()
+```
+
 ## Body data
 
 The `sas body` data set consists of data about children taken from the SAS online documentation V8:
@@ -137,7 +160,7 @@ The `sas body` data set consists of data about children taken from the SAS onlin
 | height   | 	height in inches                        |
 | weight   | 	weight in pounds                        |
 
-```{r, echo=FALSE}
+```{r, include=FALSE}
 saveRDS(import("sas_body.sav"), file = "body.rds", version=2)
 ```
 
@@ -147,18 +170,39 @@ body <- ghload("data/body.rds")
 str(body, give.attr=FALSE)
 ```
 
+```{python, message=FALSE, warning=FALSE}
+#import rpy2, rpy2.robjects.pandas2ri as rop
+rpy2.robjects.r('body = mmstat4::ghload("data/body.rds")')
+body = rop.rpy2py(rpy2.robjects.r["body"])
+body.info()
+```
+
 ## Boston Housing data
 
 ### `MASS::Boston`
 
-```{r, echo=FALSE, warning=FALSE, printr.help.sections=c("description", "format", "source")}
+```{r, echo=FALSE, warning=FALSE, printr.help.sections=c("description", "format", "source"), logo=FALSE}
 ?MASS::Boston
+```
+
+```{python, message=FALSE, warning=FALSE}
+#import rpy2, rpy2.robjects.pandas2ri as rop
+rpy2.robjects.r('library("MASS")')
+Boston = rop.rpy2py(rpy2.robjects.r["Boston"])
+Boston.info()
 ```
 
 ### `spData::boston.c`
 
-```{r, echo=FALSE, warning=FALSE, printr.help.sections=c("description", "format", "source", "references")}
+```{r, echo=FALSE, warning=FALSE, printr.help.sections=c("description", "format", "source", "references"), logo=FALSE}
 ?spData::boston
+```
+
+```{python, message=FALSE, warning=FALSE}
+#import rpy2, rpy2.robjects.pandas2ri as rop
+rpy2.robjects.r('library("spData")')
+bostonc = rop.rpy2py(rpy2.robjects.r["boston.c"])
+bostonc.info()
 ```
 
 ## Cereal data
@@ -222,6 +266,13 @@ concrete <- ghload("data/concrete.rds")
 str(concrete, give.attr=FALSE)
 ```
 
+```{python, message=FALSE, warning=FALSE}
+#import rpy2, rpy2.robjects.pandas2ri as rop
+rpy2.robjects.r('concrete = mmstat4::ghload("data/concrete.rds")')
+concrete = rop.rpy2py(rpy2.robjects.r["concrete"])
+concrete.info()
+```
+
 ## Country data
 
 The `country` are data about the most countries in the world in 1992.
@@ -245,6 +296,13 @@ saveRDS(import("COUNTRY.SAV"), file = "country.rds", version=2)
 library("mmstat4")
 country <- ghload("data/country.rds")
 str(country, give.attr=FALSE)
+```
+
+```{python, message=FALSE, warning=FALSE}
+#import rpy2, rpy2.robjects.pandas2ri as rop
+rpy2.robjects.r('country = mmstat4::ghload("data/country.rds")')
+country = rop.rpy2py(rpy2.robjects.r["country"])
+country.info()
 ```
 
 ## Current population survey (CPS)
@@ -276,6 +334,13 @@ cps <- ghload("data/cps.rds")
 str(cps, give.attr=FALSE)
 ```
 
+```{python, message=FALSE, warning=FALSE}
+#import rpy2, rpy2.robjects.pandas2ri as rop
+rpy2.robjects.r('cps = mmstat4::ghload("data/cps.rds")')
+cps = rop.rpy2py(rpy2.robjects.r["cps"])
+cps.info()
+```
+
 ## Datasaurus
 
 The data are created by Matejka, J., \& Fitzmaurice, G. (2017).
@@ -290,6 +355,13 @@ The data are created by Matejka, J., \& Fitzmaurice, G. (2017).
 ```{r}
 library("datasauRus")
 str(datasaurus_dozen, give.attr=FALSE)
+```
+
+```{python, message=FALSE, warning=FALSE}
+#import rpy2, rpy2.robjects.pandas2ri as rop
+rpy2.robjects.r('library("datasauRus")')
+datasaurus = rop.rpy2py(rpy2.robjects.r["datasaurus_dozen"])
+datasaurus.info()
 ```
 
 ## General Social Survey data
@@ -356,10 +428,23 @@ gss <- ghload("gss.rds")
 str(gss, give.attr=FALSE)
 ```
 
+```{python, message=FALSE, warning=FALSE}
+#import rpy2, rpy2.robjects.pandas2ri as rop
+rpy2.robjects.r('gss = mmstat4::ghload("data/gss.rds")')
+gss = rop.rpy2py(rpy2.robjects.r["gss"])
+gss.info()
+```
+
 ## Iris flower
 
-```{r, echo=FALSE, warning=FALSE, printr.help.sections=c("description", "format", "source", "references")}
+```{r, echo=FALSE, warning=FALSE, printr.help.sections=c("description", "format", "source", "references"), logo=FALSE}
 ?iris
+```
+
+```{python, message=FALSE, warning=FALSE}
+#import rpy2, rpy2.robjects.pandas2ri as rop
+iris = rop.rpy2py(rpy2.robjects.r["iris"])
+iris.info()
 ```
 
 ## Olympic decathlon
@@ -387,8 +472,15 @@ saveRDS(import("olympic.sav"), file = "olympic.rds", version=2)
 
 ```{r}
 library("mmstat4")
-cps <- ghload("data/olympic.rds")
-str(cps, give.attr=FALSE)
+olympic <- ghload("data/olympic.rds")
+str(olympic, give.attr=FALSE)
+```
+
+```{python, message=FALSE, warning=FALSE}
+#import rpy2, rpy2.robjects.pandas2ri as rop
+rpy2.robjects.r('olympic = mmstat4::ghload("data/olympic.rds")')
+olympic = rop.rpy2py(rpy2.robjects.r["olympic"])
+olympic.info()
 ```
 
 ## Pechstein
@@ -416,6 +508,13 @@ pechstein <- ghload("data/pechstein.rds")
 str(pechstein, give.attr=FALSE)
 ```
 
+```{python, message=FALSE, warning=FALSE}
+#import rpy2, rpy2.robjects.pandas2ri as rop
+rpy2.robjects.r('pechstein = mmstat4::ghload("data/pechstein.rds")')
+pechstein = rop.rpy2py(rpy2.robjects.r["pechstein"])
+pechstein.info()
+```
+
 ### `pechstein_isu`
 
 `(Out of Competition)` means the measurement was taken in some training site, 
@@ -436,6 +535,13 @@ saveRDS(import("pechstein_isu.csv"), file = "pechstein_isu.rds", version=2)
 library("mmstat4")
 pechstein_isu <- ghload("data/pechstein_isu.rds")
 str(pechstein_isu, give.attr=FALSE)
+```
+
+```{python, message=FALSE, warning=FALSE}
+#import rpy2, rpy2.robjects.pandas2ri as rop
+rpy2.robjects.r('pechstein_isu = mmstat4::ghload("data/pechstein_isu.rds")')
+pechstein_isu = rop.rpy2py(rpy2.robjects.r["pechstein_isu"])
+pechstein_isu.info()
 ```
 
 ## Rental prices in cities
@@ -462,8 +568,15 @@ saveRDS(x, file = "staedtemieten.rds", version=2)
 
 ```{r}
 library("mmstat4")
-bank2 <- ghload("data/staedtemieten.rds")
-str(bank2, give.attr=FALSE)
+staedtemieten <- ghload("data/staedtemieten.rds")
+str(staedtemieten, give.attr=FALSE)
+```
+
+```{python, message=FALSE, warning=FALSE}
+#import rpy2, rpy2.robjects.pandas2ri as rop
+rpy2.robjects.r('staedtemieten = mmstat4::ghload("data/staedtemieten.rds")')
+staedtemieten = rop.rpy2py(rpy2.robjects.r["staedtemieten"])
+staedtemieten.info()
 ```
 
 ## Salary data
@@ -497,6 +610,13 @@ salary<- ghload("data/salary.rds")
 str(salary, give.attr=FALSE)
 ```
 
+```{python, message=FALSE, warning=FALSE}
+#import rpy2, rpy2.robjects.pandas2ri as rop
+rpy2.robjects.r('salary = mmstat4::ghload("data/salary.rds")')
+salary = rop.rpy2py(rpy2.robjects.r["salary"])
+salary.info()
+```
+
 ## Swiss banknote data
 
 The data are taken from the book of Flury, B. and Riedwyl, H. (1988). \textit{Multivariate Statistics: A practical approach}. London: Chapman \& Hall. They are about the measurement of 200 genuine and forged old Swiss bank notes.
@@ -520,6 +640,13 @@ saveRDS(import("BANK2.sav"), file = "bank2.rds", version=2)
 library("mmstat4")
 bank2 <- ghload("data/bank2.rds")
 str(bank2, give.attr=FALSE)
+```
+
+```{python, message=FALSE, warning=FALSE}
+#import rpy2, rpy2.robjects.pandas2ri as rop
+rpy2.robjects.r('bank2 = mmstat4::ghload("data/bank2.rds")')
+bank2 = rop.rpy2py(rpy2.robjects.r["bank2"])
+bank2.info()
 ```
 
 ## 1000 songs
@@ -550,9 +677,16 @@ songs <- ghload("data/1000songs.rds")
 str(songs, give.attr=FALSE)
 ```
 
+```{python, message=FALSE, warning=FALSE}
+#import rpy2, rpy2.robjects.pandas2ri as rop
+rpy2.robjects.r('songs = mmstat4::ghload("data/1000songs.rds")')
+songs = rop.rpy2py(rpy2.robjects.r["songs"])
+songs.info()
+```
+
 ## `datasets::Titanic`
 
-```{r, echo=FALSE, warning=FALSE, printr.help.sections=c("description", "format", "source", "references")}
+```{r, echo=FALSE, warning=FALSE, printr.help.sections=c("description", "format", "source", "references"), logo=FALSE}
 ?Titanic
 ```
 
@@ -591,6 +725,13 @@ titanic3 <- ghload("data/titanic3.rds")
 str(titanic3, give.attr=FALSE)
 ```
 
+```{python, message=FALSE, warning=FALSE}
+#import rpy2, rpy2.robjects.pandas2ri as rop
+rpy2.robjects.r('titanic3 = mmstat4::ghload("data/titanic3.rds")')
+titanic3 = rop.rpy2py(rpy2.robjects.r["titanic3"])
+titanic3.info()
+```
+
 ## U.S. and New Mexico Highway Deaths
 
 U.S. and New Mexico highway fatalities per million vehicle-miles (1945-1984).
@@ -609,4 +750,11 @@ saveRDS(import("fatalities_statlib.csv"), file = "fatalities.rds", version=2)
 library("mmstat4")
 fatalities <- ghload("data/fatalities.rds")
 str(fatalities, give.attr=FALSE)
+```
+
+```{python, message=FALSE, warning=FALSE}
+#import rpy2, rpy2.robjects.pandas2ri as rop
+rpy2.robjects.r('fatalities = mmstat4::ghload("data/fatalities.rds")')
+fatalities = rop.rpy2py(rpy2.robjects.r["fatalities"])
+fatalities.info()
 ```
