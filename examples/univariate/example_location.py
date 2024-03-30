@@ -1,8 +1,6 @@
 import numpy as np, pandas as pd
-import rpy2, rpy2.robjects.pandas2ri as rop
 # Load the Boston Housing dataset
-rpy2.robjects.r('library("MASS")')
-boston_df = rop.rpy2py(rpy2.robjects.r["Boston"])
+boston_df = ghload("Boston", "MASS")
 # mean
 mean_value = np.mean(boston_df['medv'])
 print("mean:", mean_value)

@@ -1,3 +1,3 @@
 library("DescTools")
-data(Boston, package="MASS")
-JarqueBeraTest(Boston$medv)	
+Boston <- mmstat4::ghload("Boston200.rds")
+JarqueBeraTest(Boston$medv)

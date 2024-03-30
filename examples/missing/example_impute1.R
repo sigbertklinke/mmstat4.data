@@ -1,5 +1,4 @@
-library("mmstat4")
-body <- ghload("data/allbus2012.rds")
+body <- mmstat4::ghload("data/allbus2012.rds")
 body <- body[,c("age", "height", "weight")]
 # number of NAs
 nabody <- is.na(body)

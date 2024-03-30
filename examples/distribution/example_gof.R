@@ -1,3 +1,3 @@
-data(Boston, package="MASS")
+Boston <- ghload("Boston200.rds")
 # test on uniform distribution
-chisq.test(table(Boston$rad)) 
+chisq.test(table(Boston$rad))

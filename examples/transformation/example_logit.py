@@ -1,6 +1,6 @@
 import pandas as pd, numpy as np
 from scipy.special import logit
-data = pd.read_excel("https://tinyurl.com/bdhsbak2/boston.xlsx")
+data = ghload("Boston", "MASS")
 indus = data["indus"]/100
 # Power + Plot
 lindus = logit(indus)

@@ -1,7 +1,7 @@
 import pandas as pd, numpy as np, matplotlib.pyplot as plt
 from scipy.spatial import distance
-data = pd.read_excel("https://tinyurl.com/bdhsbak2/boston.xlsx")
-data = data.drop(['crim', 'chas', 'rad'], axis=1)
+boston_df = ghload("Boston", "MASS")
+data = boston_df.drop(['crim', 'chas', 'rad'], axis=1)
 # Compute the covariance matrix, inverse and mean 
 cov_matrix  = np.cov(data.values.T)
 cov_inverse = np.linalg.inv(cov_matrix)
