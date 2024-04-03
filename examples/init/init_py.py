@@ -1,6 +1,4 @@
 import rpy2, rpy2.robjects.pandas2ri as rop
-#rpy2.robjects.r('allbus = mmstat4::ghload("data/allbus2012.rds")')
-#allbus = rop.rpy2py(rpy2.robjects.r["allbus"])
 
 def ghload (data, pkg=None):
     if pkg is None:
