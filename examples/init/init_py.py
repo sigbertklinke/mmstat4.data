@@ -1,7 +1,7 @@
 def ghload (data, pkg=None):
     if pkg is None:
       ds = r["mmstat4::ghload"](data)
-    else
+    else:
       ds = r[pkg + '::' + data]
     return ds
   
