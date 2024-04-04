@@ -1,14 +1,10 @@
-import rpy2, rpy2.robjects.pandas2ri as rop
-
 def ghload (data, pkg=None):
     if pkg is None:
-      call = '.data = mmstat4::ghload("%s")' % data
-    else:
-      call = '.data = %s::%s' % (pkg, data)
-    rpy2.robjects.r(call)
-    return rop.rpy2py(rpy2.robjects.r[".data"])
+      ds = r["mmstat4::ghload"](data)
+    else
+      ds = r[pkg + '::' + data]
+    return ds
   
 def ghsource (prg, data):
-    call = 'mmstat4::ghsource("%s")' % prg
-    rpy2.robjects.r(call)
-    return rpy2.robjects.pandas2ri.rpy2py(rpy2.robjects.r[data])
+    r["mmstat4::ghsource"](prg)
+    return r[data]
