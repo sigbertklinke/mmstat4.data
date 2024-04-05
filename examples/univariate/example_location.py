@@ -1,6 +1,6 @@
 import numpy as np, pandas as pd
 # Load the Boston Housing dataset
-boston_df = ghload("Boston", "MASS")
+boston_df = r["MASS::Boston"]
 # mean
 mean_value = np.mean(boston_df['medv'])
 print("mean:", mean_value)

@@ -1,5 +1,5 @@
 import pandas as pd, numpy as np
-body = ghload("allbus2012.rds")
+body = r["mmstat4::ghload"]("allbus2012.rds")
 body = body[["age", "height", "weight"]]
 # Number of NAs
 nabody = body.isna()

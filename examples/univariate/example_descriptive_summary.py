@@ -1,5 +1,5 @@
 import pandas as pd, numpy as np
-boston_df = ghload("Boston", "MASS")
+boston_df = r["MASS::Boston"]
 #
 medv_column     = boston_df['medv']
 fivenum_values  = np.percentile(medv_column, [0, 25, 50, 75, 100])

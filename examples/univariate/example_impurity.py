@@ -1,5 +1,5 @@
 import pandas as pd
-boston_df = ghload("Boston", "MASS")
+boston_df = r["MASS::Boston"]
 #
 ftab = boston_df['rad'].value_counts()
 p = ftab / len(boston_df['rad'])

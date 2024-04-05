@@ -1,7 +1,7 @@
 # install R libraries/Python modules if necessary
 install(rlibs=c("reticulate", "feather"),
         pymods=c("pandas", "numpy", "statsmodels", "scipy", "matplotlib", "seaborn", "stemgraphic", "autoimpute",
-                 "scikit-learn", "outliers")
+                 "scikit-learn", "outlier-utils")
 )
 
 # "pandas", "numpy", "scikit-learn", "rpy2", "pyreadstat", "matplotlib", "seaborn",

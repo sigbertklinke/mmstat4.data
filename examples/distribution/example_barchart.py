@@ -1,5 +1,5 @@
 import numpy as np, pandas as pd, matplotlib.pyplot as plt
-boston_df = ghload("Boston", "MASS")
+boston_df = r["MASS::Boston"]
 #
 boston_df['rad'] = boston_df['rad'].apply(str)
 table = pd.value_counts(boston_df['rad'])

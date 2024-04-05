@@ -1,6 +1,6 @@
 import pandas as pd, numpy as np, matplotlib.pyplot as plt
 from scipy import stats
-data = ghload("Boston", "MASS")
+data = r["MASS::Boston"]
 # Power + Plot
 bccrim, lbc = stats.boxcox(df["crim"])
 yjcrim, lyj = stats.yeojohnson(df["crim"])

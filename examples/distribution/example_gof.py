@@ -1,5 +1,5 @@
 import numpy as np, pandas as pd, scipy.stats as stats
-boston_df = ghload("Boston200.rds")
+boston_df = r["mmstat4::ghload"]("Boston200.rds")
 data = boston_df['rad'].dropna()
 #
 observed = pd.crosstab(index=data, columns="count")

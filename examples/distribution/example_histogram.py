@@ -1,5 +1,5 @@
 import numpy as np, pandas as pd, matplotlib.pyplot as plt
-boston_df = ghload("Boston", "MASS")
+boston_df = r["MASS::Boston"]
 medv_data = boston_df['medv'].values
 # Create a histogram with observations (rug plot)
 plt.figure(figsize=(10, 6))

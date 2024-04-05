@@ -1,6 +1,6 @@
 from statsmodels.stats.proportion import binom_test
 from statsmodels.stats.proportion import proportions_ztest
-Boston = ghload("Boston200.rds")
+Boston = r["mmstat4::ghload"]("Boston200.rds")
 res = binom_test(sum(Boston['chas']), len(Boston['chas']))
 print(res)
 #

@@ -10,6 +10,6 @@ def sign_test(data, mu0=None):
     # Calculate the p-value using the binomial distribution
     p_value = 2*binom.cdf(min(nlow, len(data)-nlow), n=len(data), p=0.5)
     return p_value
-Boston = ghload("Boston200.rds")
+Boston = r["mmstat4::ghload"]("Boston200.rds")
 p_value = sign_test(Boston['medv'])
 print("p-value:", p_value)

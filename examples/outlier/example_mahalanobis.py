@@ -1,6 +1,6 @@
 import pandas as pd, numpy as np, matplotlib.pyplot as plt
 from scipy.spatial import distance
-boston_df = ghload("Boston", "MASS")
+boston_df = r["MASS::Boston"]
 data = boston_df.drop(['crim', 'chas', 'rad'], axis=1)
 # Compute the covariance matrix, inverse and mean 
 cov_matrix  = np.cov(data.values.T)

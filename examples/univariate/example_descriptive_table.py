@@ -1,5 +1,5 @@
 import pandas as pd, numpy as np
-boston_df = ghload("Boston", "MASS")
+boston_df = r["MASS::Boston"]
 # Frequency table / Percentage distribution
 frequency = pd.crosstab(index=boston_df['rad'], columns='count')
 print(frequency)

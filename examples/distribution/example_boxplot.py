@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-boston_df = ghload("Boston", "MASS")
+boston_df = r["MASS::Boston"]
 #
 plt.figure()
 plt.boxplot(x, vert=False)

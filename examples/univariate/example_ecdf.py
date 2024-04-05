@@ -1,6 +1,6 @@
 import statsmodels.api as sm, scipy.stats as ss
 import matplotlib.pyplot as plt
-boston_df = ghload("Boston", "MASS")
+boston_df = r["MASS::Boston"]
 medv = boston_df['medv'] 
 # ECDF
 ecdf = sm.distributions.ECDF(medv)

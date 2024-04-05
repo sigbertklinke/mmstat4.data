@@ -1,5 +1,5 @@
 import numpy as np, pandas as pd, matplotlib.pyplot as plt
-boston_df = ghload("Boston", "MASS")
+boston_df = r["MASS::Boston"]
 #
 tab = boston_df['rad'].value_counts()
 plt.figure(figsize=(8, 8))

@@ -1,5 +1,5 @@
 import pandas as pd
-allbus2018 = ghload("allbus2018.rds")
+allbus2018 = r["mmstat4::ghload"]("allbus2018.rds")
 vars_starting_with_pt = allbus2018.filter(like="pt")
 print(vars_starting_with_pt.isnull().sum())         # NA per col
 print(vars_starting_with_pt.isnull().sum(axis=1))   # NA per row

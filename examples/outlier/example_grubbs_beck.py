@@ -12,7 +12,7 @@ def grubbs_beck_test(x, left=True, B=1000, k=2):
     v = gbs(sorted(scale(x)), ind)
     return {"statistic": (n - 3) / (n - 1) * v, "p_value": sum(vb <= v) / B}
   
-boston_df = ghload("Boston200.rds")
+boston_df = r["mmstat4::ghload"]("Boston200.rds")
 result = grubbs.test(boston_df['medv'], alpha=0.05)
 print(result)
 result = grubbs_beck_test(boston_df['medv'], left=False)

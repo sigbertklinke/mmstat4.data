@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt, seaborn as sns
-boston_df = ghload("Boston", "MASS")
+boston_df = r["MASS::Boston"]
 plt.figure()
 sns.kdeplot(boston_df['medv'].dropna(), bw_adjust=0.7, 
             label='Kernel Density')

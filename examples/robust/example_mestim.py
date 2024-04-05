@@ -5,7 +5,7 @@ def rob_loc (x, M):
   results = sm.RLM(x, exog, M=M).fit()
   return (results.params.iloc[0])
 
-medv = ghload("Boston", "MASS")['medv']
+medv = r["MASS::Boston"]['medv']
 res = { 'mean': np.mean(medv), 'median': np.median(medv),
         'huber':  rob_loc(medv, sm.robust.norms.HuberT()),
         'hampel':  rob_loc(medv, sm.robust.norms.Hampel()),

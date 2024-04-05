@@ -1,5 +1,5 @@
 import numpy as np
-boston_df = ghload("Boston200.rds")
+boston_df = r["mmstat4::ghload"]("Boston200.rds")
 # Variance and standard deviation
 variance = np.var(boston_df['medv'])
 std_deviation = np.std(boston_df['medv'])

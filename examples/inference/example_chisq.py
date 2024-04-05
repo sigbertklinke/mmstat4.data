@@ -1,7 +1,7 @@
-import pandas as pd, rpy2, rpy2.robjects.pandas2ri as rop
+import pandas as pd
 from scipy.stats import chi2_contingency
 # Load the Boston Housing dataset
-boston_df = ghload("Boston200.rds")
+boston_df = r["mmstat4::ghload"]("Boston200.rds")
 #
 ctab = pd.crosstab(boston_df['chas'], boston_df['rad'])
 print(ctab)

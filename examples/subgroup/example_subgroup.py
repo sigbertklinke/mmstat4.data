@@ -1,6 +1,6 @@
 import seaborn as sns
 import matplotlib.pyplot as plt
-df = ghload("Boston", "MASS")
+df = r["MASS::Boston"]
 # Create boxplot with seaborn
 plt.figure(figsize=(8, 6))
 sns.boxplot(y='medv', x='rad', data=df)

@@ -1,7 +1,7 @@
 import pandas as pd, numpy as np, matplotlib.pyplot as plt
 from sklearn.preprocessing import scale
 from scipy import stats
-df = ghload("Boston", "MASS")
+df = r["MASS::Boston"]
 df.describe()
 # scale
 sccrim = scale(df[['crim']])

@@ -1,6 +1,6 @@
 import statsmodels.api as sm
 import matplotlib.pyplot as plt
-boston_df = ghload("Boston", "MASS")
+boston_df = r["MASS::Boston"]
 kde = sm.nonparametric.KDEUnivariate(boston_df['medv'].dropna())
 kde.fit()
 plt.figure()

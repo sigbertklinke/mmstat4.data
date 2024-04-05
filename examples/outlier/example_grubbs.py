@@ -1,6 +1,6 @@
 import pandas as pd, numpy as np
 from outliers import smirnov_grubbs as grubbs
-samp = ghload("Boston200.rds")
+samp = r["mmstat4::ghload"]("Boston200.rds")
 # returns the non-outliers
 grubbs.test(samp['crim'])
 grubbs.two_sided_test(samp['crim'])

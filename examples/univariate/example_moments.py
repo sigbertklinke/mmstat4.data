@@ -1,5 +1,5 @@
 import pandas as pd, numpy as np, scipy.stats as ss
-boston_df = ghload("Boston", "MASS")
+boston_df = r["MASS::Boston"]
 #
 medv_column    = boston_df['medv']
 mean_value     = np.mean(medv_column)
