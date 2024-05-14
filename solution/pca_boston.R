@@ -1,4 +1,4 @@
-## ----------------------------------------------------------------------------------------------------------------
+## ---------------------------------------------------------------------------------------------------------------------------------
 ## a
 library("MASS")
 names(Boston)
@@ -19,7 +19,6 @@ prb <- princomp(bhd)
 opar <- par(mar=c(5.1, 4.1, 5.1, 4.1))   # adapt margins
 on.exit(par(opar))
 plot(prb$loadings, cex=0.7, axis.col=list(side=3, cex.axis=0.7, las=3), axis.row=list(cex.axis=0.7, las=1), main="")
-devtools::unload('plot.matrix') # Package devtools must be installed!
 #
 prb <- princomp(sbhd)
 pcvar <- prb$sdev^2
@@ -45,4 +44,5 @@ on.exit(par(opar))
 plot(prb$loadings, cex=0.7, axis.col=list(side=3, cex.axis=0.7, las=3), axis.row=list(cex.axis=0.7, las=1), main="")
 screeplot(prb)
 abline(h=1)
+devtools::unload('plot.matrix') # Package devtools must be installed!
 

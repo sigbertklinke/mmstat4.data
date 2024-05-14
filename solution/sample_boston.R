@@ -1,4 +1,4 @@
-## ----------------------------------------------------------------------------------------------------------------
+## ---------------------------------------------------------------------------------------------------------------------------------
 ## a
 # It is not a sample, it is the population!
 ## b
@@ -26,8 +26,8 @@ on.exit(par(old))
 hist(means, main="Means")     # random sampling function Xbar
 hist(medians, main="Medians") # random sampling function for median
 ## e
-alpha <- 0.95
-c <- qnorm(1-(1-alpha)/2)
+alpha <- 0.05                 # conf level 1-alpha=0.95
+c <- qnorm(1-alpha/2)
 B <- 50
 means <- upper <- lower <- rep(NA, B)
 for (i in 1:B) {

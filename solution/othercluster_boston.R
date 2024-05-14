@@ -1,4 +1,4 @@
-## ----------------------------------------------------------------------------------------------------------------
+## ---------------------------------------------------------------------------------------------------------------------------------
 data("boston", package="spData")
 ## a
 bhd  <- boston.c[,c(6, 8:10, 12:15, 17:20)]
@@ -30,9 +30,9 @@ table(em2$classification, memb)
 ## e
 library("cluster")
 shc <- silhouette(memb, dist(bhds))
-plot(shc)
+plot(shc, border=NA) 
 #
 skc <- silhouette(kc$cluster, dist(bhds))
-plot(skc)
+plot(skc, border=NA)
 ## e: hclust
 

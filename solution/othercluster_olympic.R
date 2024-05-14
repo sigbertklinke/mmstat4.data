@@ -1,4 +1,4 @@
-## ----------------------------------------------------------------------------------------------------------------
+## ---------------------------------------------------------------------------------------------------------------------------------
 library("mmstat4")
 olymp <- ghload("data/olympic.rds")
 names(olymp)
@@ -26,9 +26,9 @@ table(em2$classification, memb)
 ## d
 library("cluster")
 shc <- silhouette(memb, dist(sdec))
-plot(shc)
+plot(shc, border=NA)
 #
 skc <- silhouette(kc$cluster, dist(sdec))
-plot(skc)
+plot(skc, border=NA)
 ## e: hclust
 
