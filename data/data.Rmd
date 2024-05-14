@@ -41,10 +41,6 @@ allbus_data <- list(
   )
 ```
 
-```{python python-setup, include=FALSE, logo=FALSE}
-import rpy2, rpy2.robjects.pandas2ri as rop
-```
-
 All data sets, except Cereal data, are either part of R or the repository `hu.data`.
 
 ## ALLBUS 2012
@@ -58,7 +54,7 @@ ALLBUS 2012 data set (Allgemeine Bevölkerungsumfrage der Sozialwissenschaften).
 | height   | 	height in cm                            |
 | weight   | 	weight in kg                            |
 
-```{r, include=FALSE}
+```{r, include=FALSE, eval=FALSE}
 library("rio")
 x <- import("ALLBUS2012.SAV")
 vars <- c(sex='v217', age='v220', height='v593', weight='v595')
@@ -74,9 +70,7 @@ str(allbus, give.attr=FALSE)
 ```
 
 ```{python, message=FALSE, warning=FALSE}
-#import rpy2, rpy2.robjects.pandas2ri as rop
-rpy2.robjects.r('allbus = mmstat4::ghload("data/allbus2012.rds")')
-allbus = rop.rpy2py(rpy2.robjects.r["allbus"])
+allbus = r["mmstat4::ghload"]("data/allbus2012.rds")
 allbus.info()
 ```
 
@@ -107,7 +101,7 @@ ALLBUS 2018 data set (Allgemeine Bevölkerungsumfrage der Sozialwissenschaften).
 | `r allbus_data$veukom`                | VERTRAUEN: KOMMISSION DER EU             |
 | `r allbus_data$veupar`                | VERTRAUEN: EUROPAEISCHES PARLAMENT       |
 
-```{r, include=FALSE}
+```{r, include=FALSE, eval=FALSE}
 library("rio")
 x <- import("ALLBUS2018.sav")
 vars <- c(
@@ -143,9 +137,7 @@ str(allbus, give.attr=FALSE)
 ```
 
 ```{python, message=FALSE, warning=FALSE}
-#import rpy2, rpy2.robjects.pandas2ri as rop
-rpy2.robjects.r('allbus = mmstat4::ghload("data/allbus2018.rds")')
-allbus = rop.rpy2py(rpy2.robjects.r["allbus"])
+allbus = r["mmstat4::ghload"]("data/allbus2018.rds")
 allbus.info()
 ```
 
@@ -160,7 +152,7 @@ The `sas body` data set consists of data about children taken from the SAS onlin
 | height   | 	height in inches                        |
 | weight   | 	weight in pounds                        |
 
-```{r, include=FALSE}
+```{r, include=FALSE, eval=FALSE}
 saveRDS(import("sas_body.sav"), file = "body.rds", version=2)
 ```
 
@@ -171,9 +163,7 @@ str(body, give.attr=FALSE)
 ```
 
 ```{python, message=FALSE, warning=FALSE}
-#import rpy2, rpy2.robjects.pandas2ri as rop
-rpy2.robjects.r('body = mmstat4::ghload("data/body.rds")')
-body = rop.rpy2py(rpy2.robjects.r["body"])
+body = r["mmstat4::ghload"]("data/body.rds")
 body.info()
 ```
 
@@ -185,10 +175,12 @@ body.info()
 ?MASS::Boston
 ```
 
+```{r, message=FALSE, warning=FALSE}
+str(MASS::Boston)
+```
+
 ```{python, message=FALSE, warning=FALSE}
-#import rpy2, rpy2.robjects.pandas2ri as rop
-rpy2.robjects.r('library("MASS")')
-Boston = rop.rpy2py(rpy2.robjects.r["Boston"])
+Boston = r['MASS::Boston']
 Boston.info()
 ```
 
@@ -198,16 +190,18 @@ Boston.info()
 ?spData::boston
 ```
 
+```{r, message=FALSE, warning=FALSE}
+str(spData::boston.c, give.attr=FALSE)
+```
+
 ```{python, message=FALSE, warning=FALSE}
-#import rpy2, rpy2.robjects.pandas2ri as rop
-rpy2.robjects.r('library("spData")')
-bostonc = rop.rpy2py(rpy2.robjects.r["boston.c"])
+bostonc = r['spData::boston.c']
 bostonc.info()
 ```
 
 ## Cereal data
 
-```{r, include=FALSE}
+```{r, echo=FALSE, results='asis', logo=FALSE}
 df <- data.frame(Child  = 1:25,
                  Cereal = strsplit("gggcttttgctgttgcttgtctgtt", "")[[1]],
                  Like   = strsplit("clnnccclcnclclcdcllclcllc", "")[[1]],
@@ -217,16 +211,16 @@ df$Cereal <- factor(df$Cereal, labels=c("Canary Crunch", "Ghostly Shadows",  "Tu
 df$Like   <- factor(df$Like,   labels=c("crazy", "don't know", "like", "not part"))
 df$Gift   <- factor(df$Gift,   labels=c("can't decide", "ring", "squirt gun", "whistle"))
 df$Gender <- factor(df$Gender,  labels=c("F", "M"))
-library("grid")
-library("gridExtra")
-go        <- tableGrob(df)
-maxheight <- convertHeight(sum(go$heights), "in", TRUE)
-pdf("cereal.pdf", height=maxheight)
-grid.draw(go)
-dev.off()
+#library("grid")
+#library("gridExtra")
+#go        <- tableGrob(df)
+#maxheight <- convertHeight(sum(go$heights), "in", TRUE)
+#pdf("cereal.pdf", height=maxheight)
+#grid.draw(go)
+#dev.off()
+tab <- knitr::kable(df, "markdown") 
+kableExtra::kable_styling(tab, full_width = FALSE)
 ```
-
-![](cereal.pdf)
 
 ## Concrete data
 
@@ -256,7 +250,7 @@ Data about concrete mixtures and resulting properties (Slump, Flow and Strength)
 * __Cement content__ Concretes containing a very high proportion of cement show excellent cohesiveness, but tend to be sticky. At a given water content, a considerable lowering of the cement content tends to produce harsh mixtures, with poor cohesiveness.
 * __Aggregate characteristics__ Very fine sands require more water for a given consistency; alternatively, they will produce harsh and unworkable mixtures at a water content that might have been adequate with coarser sands. Also, the particle size of coarse aggregate influences the water requirement for a given consistency.
 
-```{r, include=FALSE}
+```{r, include=FALSE, eval=FALSE}
 saveRDS(import("concrete.sav"), file = "concrete.rds", version=2)
 ```
 
@@ -267,9 +261,7 @@ str(concrete, give.attr=FALSE)
 ```
 
 ```{python, message=FALSE, warning=FALSE}
-#import rpy2, rpy2.robjects.pandas2ri as rop
-rpy2.robjects.r('concrete = mmstat4::ghload("data/concrete.rds")')
-concrete = rop.rpy2py(rpy2.robjects.r["concrete"])
+concrete = r["mmstat4::ghload"]("data/concrete.rds")
 concrete.info()
 ```
 
@@ -288,7 +280,7 @@ The `country` are data about the most countries in the world in 1992.
 | lngdp    | log of GDP                               |
 | lnradio  | log of radios per 100 people             |
 
-```{r, include=FALSE}
+```{r, include=FALSE, eval=FALSE}
 saveRDS(import("COUNTRY.SAV"), file = "country.rds", version=2)
 ```
 
@@ -299,9 +291,7 @@ str(country, give.attr=FALSE)
 ```
 
 ```{python, message=FALSE, warning=FALSE}
-#import rpy2, rpy2.robjects.pandas2ri as rop
-rpy2.robjects.r('country = mmstat4::ghload("data/country.rds")')
-country = rop.rpy2py(rpy2.robjects.r["country"])
+country = r["mmstat4::ghload"]("data/country.rds")
 country.info()
 ```
 
@@ -324,7 +314,7 @@ The `cps`data are an excerpt of the current population survey of the US.
 | age      | Age (years)                              |
 | year     | Year of survey (either 78 or 85)         |
 
-```{r, include=FALSE}
+```{r, include=FALSE, eval=FALSE}
 saveRDS(import("CPS78-85.sav"), file = "cps.rds", version=2)
 ```
 
@@ -335,9 +325,7 @@ str(cps, give.attr=FALSE)
 ```
 
 ```{python, message=FALSE, warning=FALSE}
-#import rpy2, rpy2.robjects.pandas2ri as rop
-rpy2.robjects.r('cps = mmstat4::ghload("data/cps.rds")')
-cps = rop.rpy2py(rpy2.robjects.r["cps"])
+cps = r["mmstat4::ghload"]("data/cps.rds")
 cps.info()
 ```
 
@@ -358,9 +346,7 @@ str(datasaurus_dozen, give.attr=FALSE)
 ```
 
 ```{python, message=FALSE, warning=FALSE}
-#import rpy2, rpy2.robjects.pandas2ri as rop
-rpy2.robjects.r('library("datasauRus")')
-datasaurus = rop.rpy2py(rpy2.robjects.r["datasaurus_dozen"])
+datasaurus = r["datasauRus::datasaurus_dozen"]
 datasaurus.info()
 ```
 
@@ -393,7 +379,7 @@ The General Social Survey data set is the US equivalent to ALLBUS.
 | happy    | General happiness (1=Very Happy, 2=Pretty happy, 3=Not too happy, NA=NAP/DK/NA)|
 | hapmar   | Happiness of marriage (coding as in happy)|
 
-```{r, include=FALSE}
+```{r, include=FALSE, eval=FALSE}
 x <- import("GSS.SAV")
 vars <- c(
 "age",
@@ -429,9 +415,7 @@ str(gss, give.attr=FALSE)
 ```
 
 ```{python, message=FALSE, warning=FALSE}
-#import rpy2, rpy2.robjects.pandas2ri as rop
-rpy2.robjects.r('gss = mmstat4::ghload("data/gss.rds")')
-gss = rop.rpy2py(rpy2.robjects.r["gss"])
+gss = r["mmstat4::ghload"]("data/gss.rds")
 gss.info()
 ```
 
@@ -442,8 +426,7 @@ gss.info()
 ```
 
 ```{python, message=FALSE, warning=FALSE}
-#import rpy2, rpy2.robjects.pandas2ri as rop
-iris = rop.rpy2py(rpy2.robjects.r["iris"])
+iris = r["iris"]
 iris.info()
 ```
 
@@ -466,7 +449,7 @@ The Olympic decathlon data set gives the performances of 33 men's decathlon at t
 | @1500    | 1500 metres dash / 1500m Lauf      | seconds  ($0.03768(480-x)^{1.85}$)   |	
 | score    | Scores / Punkte                    | points                               |
 
-```{r, include=FALSE}
+```{r, include=FALSE, eval=FALSE}
 saveRDS(import("olympic.sav"), file = "olympic.rds", version=2)
 ```
 
@@ -477,9 +460,7 @@ str(olympic, give.attr=FALSE)
 ```
 
 ```{python, message=FALSE, warning=FALSE}
-#import rpy2, rpy2.robjects.pandas2ri as rop
-rpy2.robjects.r('olympic = mmstat4::ghload("data/olympic.rds")')
-olympic = rop.rpy2py(rpy2.robjects.r["olympic"])
+olympic = r["mmstat4::ghload"]("data/olympic.rds")
 olympic.info()
 ```
 
@@ -498,7 +479,7 @@ The data set `pechstein_isu` contains the measurements used by the International
 | Tag           | Days since 1st Jan 2000            | 
 | Retikulozyten | Reticulocyte value                 | 
 
-```{r, include=FALSE}
+```{r, include=FALSE, eval=FALSE}
 saveRDS(import("pechstein.csv",  sep="\t", dec=","), file = "pechstein.rds", version=2)
 ```
 
@@ -509,9 +490,7 @@ str(pechstein, give.attr=FALSE)
 ```
 
 ```{python, message=FALSE, warning=FALSE}
-#import rpy2, rpy2.robjects.pandas2ri as rop
-rpy2.robjects.r('pechstein = mmstat4::ghload("data/pechstein.rds")')
-pechstein = rop.rpy2py(rpy2.robjects.r["pechstein"])
+pechstein = r["mmstat4::ghload"]("data/pechstein.rds")
 pechstein.info()
 ```
 
@@ -527,7 +506,7 @@ otherwise it was taken at a competition site
 | place         | Place of measurement               | 
 | reti          | Reticulocyte value                 | 
 
-```{r, include=FALSE}
+```{r, include=FALSE, eval=FALSE}
 saveRDS(import("pechstein_isu.csv"), file = "pechstein_isu.rds", version=2)
 ```
 
@@ -538,9 +517,7 @@ str(pechstein_isu, give.attr=FALSE)
 ```
 
 ```{python, message=FALSE, warning=FALSE}
-#import rpy2, rpy2.robjects.pandas2ri as rop
-rpy2.robjects.r('pechstein_isu = mmstat4::ghload("data/pechstein_isu.rds")')
-pechstein_isu = rop.rpy2py(rpy2.robjects.r["pechstein_isu"])
+pechstein_isu = r["mmstat4::ghload"]("data/pechstein_isu.rds")
 pechstein_isu.info()
 ```
 
@@ -560,7 +537,7 @@ The data frame consists 16777 observations and six variables.
 | Fläche        | Space                                          |
 
 
-```{r, include=FALSE}
+```{r, include=FALSE, eval=FALSE}
 x <- import("StaedteMietenR.sav")
 x$Thema <- NULL
 saveRDS(x, file = "staedtemieten.rds", version=2)
@@ -573,9 +550,7 @@ str(staedtemieten, give.attr=FALSE)
 ```
 
 ```{python, message=FALSE, warning=FALSE}
-#import rpy2, rpy2.robjects.pandas2ri as rop
-rpy2.robjects.r('staedtemieten = mmstat4::ghload("data/staedtemieten.rds")')
-staedtemieten = rop.rpy2py(rpy2.robjects.r["staedtemieten"])
+staedtemieten = r["mmstat4::ghload"]("data/staedtemieten.rds")
 staedtemieten.info()
 ```
 
@@ -600,7 +575,7 @@ The data set contains information about 474 employees hired by the Harris Trust 
 | minority | minority classification    | white, nonwhite                      |
 | sexrace  | sex \& race classification | white males, minority males, white females, minority females|
 
-```{r, include=FALSE}
+```{r, include=FALSE, eval=FALSE}
 saveRDS(import("salary.sav"), file = "salary.rds", version=2)
 ```
 
@@ -611,9 +586,7 @@ str(salary, give.attr=FALSE)
 ```
 
 ```{python, message=FALSE, warning=FALSE}
-#import rpy2, rpy2.robjects.pandas2ri as rop
-rpy2.robjects.r('salary = mmstat4::ghload("data/salary.rds")')
-salary = rop.rpy2py(rpy2.robjects.r["salary"])
+salary = r["mmstat4::ghload"]("data/salary.rds")
 salary.info()
 ```
 
@@ -632,7 +605,7 @@ The data are taken from the book of Flury, B. and Riedwyl, H. (1988). \textit{Mu
 
 [![Reverse of the Swiss 1000 franc note of the second banknote series (1911)](swissbanknote.jpg)](https://www.snb.ch/en/iabout/cash/history/id/cash_history_serie2\#t2)
 
-```{r, include=FALSE}
+```{r, include=FALSE, eval=FALSE}
 saveRDS(import("BANK2.sav"), file = "bank2.rds", version=2)
 ```
 
@@ -643,9 +616,7 @@ str(bank2, give.attr=FALSE)
 ```
 
 ```{python, message=FALSE, warning=FALSE}
-#import rpy2, rpy2.robjects.pandas2ri as rop
-rpy2.robjects.r('bank2 = mmstat4::ghload("data/bank2.rds")')
-bank2 = rop.rpy2py(rpy2.robjects.r["bank2"])
+bank2 = r["mmstat4::ghload"]("data/bank2.rds")
 bank2.info()
 ```
 
@@ -663,7 +634,7 @@ A data frame with 994 rows and 7 variables.
 | DECADE        | Decade of publication                          |
 | BAND          | Decade group (1910s-50s, 1960s, 1970s, ...)    |
 
-```{r, include=FALSE}
+```{r, include=FALSE, eval=FALSE}
 x <- import("1000 songs.ods")
 x$DECADE <- floor(x$YEAR/10) * 10
 x$BAND <- paste(x$DECADE, "s", sep="")
@@ -678,9 +649,7 @@ str(songs, give.attr=FALSE)
 ```
 
 ```{python, message=FALSE, warning=FALSE}
-#import rpy2, rpy2.robjects.pandas2ri as rop
-rpy2.robjects.r('songs = mmstat4::ghload("data/1000songs.rds")')
-songs = rop.rpy2py(rpy2.robjects.r["songs"])
+songs = r["mmstat4::ghload"]("data/1000songs.rds")
 songs.info()
 ```
 
@@ -715,7 +684,7 @@ A data frame with 1309 observations on the following 14 variables:
 | body          | Body Identification Number                                           |
 | home.dest     | Home/Destination                                                     |
 
-```{r, include=FALSE}
+```{r, include=FALSE, eval=FALSE}
 saveRDS(import("titanic3.csv"), file = "titanic3.rds", version=2)
 ```
 
@@ -726,9 +695,7 @@ str(titanic3, give.attr=FALSE)
 ```
 
 ```{python, message=FALSE, warning=FALSE}
-#import rpy2, rpy2.robjects.pandas2ri as rop
-rpy2.robjects.r('titanic3 = mmstat4::ghload("data/titanic3.rds")')
-titanic3 = rop.rpy2py(rpy2.robjects.r["titanic3"])
+titanic3 = r["mmstat4::ghload"]("data/titanic3.rds")
 titanic3.info()
 ```
 
@@ -742,7 +709,7 @@ U.S. and New Mexico highway fatalities per million vehicle-miles (1945-1984).
 | NM            | New Mexico highway fatalities per million vehicle miles  |
 | US            | U.S. highway fatalities per million vehicle miles        |
 
-```{r, include=FALSE}
+```{r, include=FALSE, eval=FALSE}
 saveRDS(import("fatalities_statlib.csv"), file = "fatalities.rds", version=2)
 ```
 
@@ -753,8 +720,6 @@ str(fatalities, give.attr=FALSE)
 ```
 
 ```{python, message=FALSE, warning=FALSE}
-#import rpy2, rpy2.robjects.pandas2ri as rop
-rpy2.robjects.r('fatalities = mmstat4::ghload("data/fatalities.rds")')
-fatalities = rop.rpy2py(rpy2.robjects.r["fatalities"])
+fatalities = r["mmstat4::ghload"]("data/fatalities.rds")
 fatalities.info()
 ```
