@@ -354,30 +354,20 @@ datasaurus.info()
 
 The General Social Survey data set is the US equivalent to ALLBUS.
 
-| Variable | Content and coding                       |
-|:---------|:-----------------------------------------|
-| age      | Age of Respondent                        |
-| sex      | Respondent's Sex (1=Male, 2=Female)      |
-| educ     | Highest Year of School Completed         | 
-| richwork | If Rich, Continue or Stop Working (1=Continue working, 2=Stop working)       | 
-| sibs     | Number of brothers and sisters           |
-| life     | Is life dull (=1), routine (=2) or exciting (=3)|
-| speduc   | Highest Year of School Completed by Spouse|
-| paeduc   | Highest Year of School Completed by Father|
-| maeduc   | Highest Year of School Completed by Mother|
-| tvhours  | Hours of Television Watched              |
-| wrkstat  | Labor Force Status (1=Working fulltime)  |
-| hrs1     | Number of Hours Worked Last Week         |
-| degree   | RS Highest Degree         |
-| incomdol | Household Income (in US$)                |
-| rincmdol | Respondent's Income (in US$)             |
-| wifeduc  | Wife: number of years of education       |
-| husbeduc | Husband: number of years of education    |
-| husbhr   | hrs worked last week by husband          |
-| wifehr   | hrs worked last week by wife             |
-| wifeft   | Wife employed full time (0=No, 1=Yes)    |
-| happy    | General happiness (1=Very Happy, 2=Pretty happy, 3=Not too happy, NA=NAP/DK/NA)|
-| hapmar   | Happiness of marriage (coding as in happy)|
+| Variable | Content and coding                 | Unit (points)                        |
+|:---------|:-----------------------------------|:-------------------------------------|
+| Nr       | Sequence number                    |                                      |
+| @100     | 100 metres dash / 100m Lauf        | seconds ($25.4347(18-x)^{1.81}$)     |	
+| long     | Long jump / Weitsprung             | centimeter  ($0.14354(x-220)^{1.40}$)|
+| poid     | Shot put / Kugelstossen            | meter ($51.39(x-1.5)^{1.05}$)        |
+| haut     | High jump / Hochsprung             | centimeter ($0.8465(x-75)^{1.42}$)   |	
+| @400     | 400 metres dash / 400m Lauf        | seconds ($1.53775(82-x)^{1.81}$)     |	
+| @110     | 110 metres hurdles / 110m H\"urden | seconds ($5.74352(28.5-x)^{1.92}$)   |	
+| disq     | Discus throw / Diskuswerfen        | meter ($12.91(x-4)^{1.1}$)           |	
+| perc     | Pole vault / Stabhochsprung        | centimeter ($50.2797(x-100)^{1.35}$) |	
+| jave     | Javelin / Speerwurf                | meter  ($10.14(x-7)^{1.08})$         |	
+| @1500    | 1500 metres dash / 1500m Lauf      | seconds  ($0.03768(480-x)^{1.85}$)   |	
+| score    | Scores / Punkte                    | points                               |
 
 ```{r, include=FALSE, eval=FALSE}
 x <- import("GSS.SAV")
@@ -428,6 +418,37 @@ gss.info()
 ```{python, message=FALSE, warning=FALSE}
 iris = r["iris"]
 iris.info()
+```
+
+## Movies
+
+The movie data where scraped by Bharat Natrayn and can be found at [Kaggle](https://www.kaggle.com/datasets/bharatnatrayn/movies-dataset-for-feature-extracion-prediction).
+
+| Variable | Content and coding                              | 
+|:---------|:------------------------------------------------|
+| MOVIES   | movie name                                      |              
+| YEAR     | year of movie or tv shows telecast for audience |   	
+| GENRE    | genre values                                    |	
+| RATING   | audience thought                                |  
+| ONE-LINE | short description                               | 
+| STARS    | cast(s)                                         |  
+| VOTES    | number of votes                                 |  
+| RUNTIME  | duration for runing                             |  
+| GROSS    | total amount earned                             |  
+
+```{r, include=FALSE, eval=FALSE}
+saveRDS(import("movies.csv"), file = "movies.rds", version=2)
+```
+
+```{r, eval=FALSE}
+library("mmstat4")
+movie <- ghload("data/movies.rds")
+str(movie, give.attr=FALSE)
+```
+
+```{python, message=FALSE, warning=FALSE, eval=FALSE}
+movie = r["mmstat4::ghload"]("data/movies.rds")
+movie.info()
 ```
 
 ## Olympic decathlon
