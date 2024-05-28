@@ -442,13 +442,13 @@ saveRDS(import("movies.csv"), file = "movies.rds", version=2)
 
 ```{r}
 library("mmstat4")
-movie <- ghload("data/movies.rds")
-str(movie, give.attr=FALSE)
+movies <- ghload("data/movies.rds")
+str(movies, give.attr=FALSE)
 ```
 
 ```{python, message=FALSE, warning=FALSE}
-movie = r["mmstat4::ghload"]("data/movies.rds")
-movie.info()
+movies = r["mmstat4::ghload"]("data/movies.rds")
+movies.info()
 ```
 
 ## Olympic decathlon
