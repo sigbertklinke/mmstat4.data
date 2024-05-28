@@ -433,20 +433,20 @@ The movie data where scraped by Bharat Natrayn and can be found at [Kaggle](http
 | ONE-LINE | short description                               | 
 | STARS    | cast(s)                                         |  
 | VOTES    | number of votes                                 |  
-| RUNTIME  | duration for runing                             |  
-| GROSS    | total amount earned                             |  
+| RunTime  | duration for runing                             |  
+| Gross    | total amount earned                             |  
 
-```{r, include=FALSE, eval=FALSE}
+```{r, include=FALSE}
 saveRDS(import("movies.csv"), file = "movies.rds", version=2)
 ```
 
-```{r, eval=FALSE}
+```{r}
 library("mmstat4")
 movie <- ghload("data/movies.rds")
 str(movie, give.attr=FALSE)
 ```
 
-```{python, message=FALSE, warning=FALSE, eval=FALSE}
+```{python, message=FALSE, warning=FALSE}
 movie = r["mmstat4::ghload"]("data/movies.rds")
 movie.info()
 ```
