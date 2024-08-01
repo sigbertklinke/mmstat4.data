@@ -1,12 +1,11 @@
 library("effectsize")
-data(Boston, package="MASS")
-index <- sample(nrow(Boston), 300)
+Boston <- mmstat4::ghload("Boston200.rds")
 # correlation
-abs(cor(Boston$medv[index], Boston$lstat[index]))
+abs(cor(Boston$medv, Boston$lstat))
 # associations
-chisq.test(Boston$rad[index], Boston$chas[index])
-cohens_w(Boston$rad[index], Boston$chas[index])
-#phi(Boston$rad[index], Boston$chas[index]) # only 2x2
-cramers_v(Boston$rad[index], Boston$chas[index])
-tschuprows_t(Boston$rad[index], Boston$chas[index])
-pearsons_c(Boston$rad[index], Boston$chas[index])
+chisq.test(Boston$rad, Boston$chas)
+cohens_w(Boston$rad, Boston$chas)
+#phi(Boston$rad, Boston$chas) # only 2x2
+cramers_v(Boston$rad, Boston$chas)
+tschuprows_t(Boston$rad, Boston$chas)
+pearsons_c(Boston$rad, Boston$chas)
