@@ -6,7 +6,7 @@ Boston200 <- MASS::Boston[index,]
 mcar <- runif(200)<0.25
 # 40% mar missing based on lstat
 prob <- 1-(Boston200$lstat-min(Boston200$lstat))/(max(Boston200$lstat)-min(Boston200$lstat))
-mar  <- as.logical(rbinom(200, 1, prob/2))
+mar  <- as.logical(rbinom(200, 1, prob/3))
 # 40% mar missing based on medv
 mnar <- Boston200$medv>quantile(Boston200$medv, 0.75)
 #
