@@ -2,8 +2,8 @@
 #library("devtools")
 #install_github("simecek/additivityTests")
 library("psych")
+bfi2 <- mmstat4::ghload("data/bfi4.rds")
 # extract first factor
-bfi2 <- na.omit(bfi)
 fa   <- fa(bfi2)
 vars <- (abs(fa$loadings)>0.5) & (sign(fa$loadings)<0)
 # create corrected items matrix

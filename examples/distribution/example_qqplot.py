@@ -1,4 +1,4 @@
-import matplotlib.pyplot as plt, import statsmodels.api as sm
+import matplotlib.pyplot as plt, statsmodels.api as sm
 boston_df = r["MASS::Boston"]
 #
 plt.figure()

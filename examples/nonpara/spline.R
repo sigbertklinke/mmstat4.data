@@ -1,0 +1,25 @@
+set.seed(0)
+n <- 10
+x <- seq(0,1, by=1/(n-1))
+y <- runif(10)
+ss <- smooth.spline(x, y, spar=0)
+yh <- predict(ss, seq(0,1, by=1/500))
+pdf("spline.pdf", width=10, height=3)
+op <- par(mar=c(4.1, 0.1, 0.1, 0.1))
+on.exit(par(op))
+plot(x, y, ylim=range(yh$y), pch=19, ylab="",
+     xlab=expression(paste("black: ", lambda, "=0, all other: ", lambda >= "0")))
+lines(yh)
+ss <- smooth.spline(x, y, spar=1)
+yh <- predict(ss, seq(0,1, by=1/500))
+lines(yh, col="red")
+ss <- smooth.spline(x, y, spar=0.4)
+yh <- predict(ss, seq(0,1, by=1/500))
+lines(yh, col="blue")
+ss <- smooth.spline(x, y, spar=0.2)
+yh <- predict(ss, seq(0,1, by=1/500))
+lines(yh, col="green")
+
+dev.off()
+if (interactive()) browseURL(paste0(getwd(),"/spline.pdf"))
+

@@ -1,5 +1,5 @@
 library("psych")
-bfi2 <- na.omit(bfi[,1:25])
+bfi2 <- mmstat4::ghload("data/bfi4.rds")
 # ML with Kaiser normalization
 fa1 <-factanal(bfi2, factors=5, scores="regression")
 head(fa1$scores)

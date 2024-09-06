@@ -1,4 +1,4 @@
-import numpy as np,
+import numpy as np
 from outliers import smirnov_grubbs as grubbs
 from sklearn.preprocessing import scale
 

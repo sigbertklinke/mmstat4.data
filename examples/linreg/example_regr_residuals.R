@@ -1,0 +1,6 @@
+library("mmstat4")
+cps78_85 <- ghload("cps.rds")
+x  <- subset(cps78_85, year==85)
+lm <- lm(lwage~educ+exper, data=x)
+par(mfrow=c(2,2))
+plot(lm)

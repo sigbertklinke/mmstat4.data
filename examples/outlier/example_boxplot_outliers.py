@@ -1,4 +1,4 @@
-import numpy as np, seaborn as sns. matplotlib.pyplot as plt
+import numpy as np, seaborn as sns, matplotlib.pyplot as plt
 data = np.random.normal(0, 1, 1000)
 # Create a boxplot with a rug plot
 plt.figure()

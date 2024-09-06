@@ -1,4 +1,5 @@
 library("psych")
+bfi <- mmstat4::ghload("data/bfi4.rds")
 scree(bfi[,1:25])
 # principal component extraction
 principal(bfi[,1:25], nfactors=5, rotate="none")

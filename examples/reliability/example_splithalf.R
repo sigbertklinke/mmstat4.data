@@ -1,4 +1,4 @@
 library("psych")
-bfi2 <- na.omit(bfi[,1:25])
+bfi2 <- mmstat4::ghload("data/bfi4.rds")
 # various coefficients
 splitHalf(bfi2)

@@ -1,11 +1,11 @@
 library("psych")
-bfi2 <- na.omit(bfi[,1:25])
+bfi2 <- mmstat4::ghload("data/bfi4.rds")
 # ML with Kaiser normalization
 factanal(bfi2, factors=5)
 # oblimin rotation without Kaiser normalization
 fa1 <- fa(bfi2, nfactors=5)
 fa1
-# apply Kaiser normalization 
+# apply Kaiser normalization
 fa2 <- fa(bfi2, nfactors=5, rotate="none")
 fa2 <- kaiser(fa2)
 fa2

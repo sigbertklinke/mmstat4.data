@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-df = r["MASS::Boston"]
+boston = r["MASS::Boston"]
 boston['RAD']  = boston['rad'].astype(int)
 boston['CHAS'] = boston['chas'].astype(int)
 grouped_data = boston.groupby(['RAD', 'CHAS']).size().unstack().fillna(0)

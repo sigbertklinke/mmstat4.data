@@ -1,13 +1,12 @@
 import pandas as pd
 import pingouin as pg
-survey = r['MASS::survey']
+survey = r["MASS::survey"]
 # Cohens d
-x = survey['Height']
-y = survey['Sex'].map({'Male': 0, 'Female': 1})
+x = survey[survey["Sex"] == "Male"]['Height']
+y = survey[survey["Sex"] == "Female"]['Height']
 pg.compute_effsize(x, y, eftype='cohen')
 pg.compute_effsize(x, y, eftype='hedges')
-x = survey['Wr.Hnd']
-y = survey['W.Hnd'].map({'Left': 0, 'Right': 1})
+x = survey[survey["W.Hnd"] == "Left"]['Wr.Hnd']
+y = survey[survey["W.Hnd"] == "Right"]['Wr.Hnd']
 pg.compute_effsize(x, y, eftype='cohen')
 pg.compute_effsize(x, y, eftype='hedges')
-# Results in R and Python differ substantially !

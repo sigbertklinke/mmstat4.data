@@ -10,7 +10,7 @@ n = ctab.sum().sum(); r, c = ctab.shape
 chi2, p, dof, ex = chi2_contingency(ctab)
 print('Chi-squared test:', chi2, p, dof, ex)
 print('Cohen\'s w:', np.sqrt(chi2/n))
-cramers_v = np.sqrt(chi2 / (n * (min(tab.shape) - 1)))
+cramers_v = np.sqrt(chi2 / (n * (min(ctab.shape) - 1)))
 print('Cramér\'s V:', cramers_v)
 tschuprows_t = np.sqrt(chi2 / (n * np.sqrt(r*c)))
 print('Tschuprow\'s T:', tschuprows_t)

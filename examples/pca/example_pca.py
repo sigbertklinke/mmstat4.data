@@ -2,7 +2,7 @@ import pandas as pd, numpy as np
 import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
 bank2 = r['mmstat4::ghload']('bank2.rds')
-pca = PCA(); pc = pca.fit_transform(bank2_scaled)
+pca = PCA(); pc = pca.fit_transform(bank2)
 pev = pca.explained_variance_; pevr = pca.explained_variance_ratio_
 colname = [f'PC{i+1}' for i in range(pc.shape[1])]
 print(pd.DataFrame(pc, columns=colname))

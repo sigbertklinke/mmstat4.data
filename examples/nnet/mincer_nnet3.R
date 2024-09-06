@@ -93,7 +93,7 @@ minerrpos <- apply(error[,,2], 2, which.min)
 minerror <- apply(error, c(2,3), min)
 
 
-size <- 5
+size <- 3
 file <- sprintf("mincer_nnet%.0f.pdf", size)
 #for (i in seq(sizes)) {
   set.seed(0)

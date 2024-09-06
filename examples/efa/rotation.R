@@ -1,5 +1,6 @@
 library("psych")
 # principal component extraction
+bfi <- mmstat4::ghload("data/bfi4.rds")
 pc  <- fa(bfi[,1:25], nfactors=5)
 pdf("rotation.pdf", width=5, height=5)
 col <- ifelse(apply(abs(pc$loadings[,1:2])<0.5, 1, all), "red", "blue")
